@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2021 at 11:17 AM
+-- Generation Time: Jul 25, 2021 at 09:14 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -66,7 +66,8 @@ CREATE TABLE `kategori` (
 INSERT INTO `kategori` (`idkategori`, `namakategori`, `deskripsi`, `created_at`, `updated_at`, `is_active`) VALUES
 (1, 'Kopling Matic', 'zzz', '2021-07-17 17:14:00', '2021-07-17 17:18:00', 1),
 (2, 'Roller', '', '2021-07-17 17:18:00', NULL, 1),
-(3, 'zzz', '', '2021-07-17 17:18:00', '2021-07-17 17:19:00', 0);
+(3, 'zzz', '', '2021-07-17 17:18:00', '2021-07-17 17:19:00', 0),
+(4, 'Oli', 'Oli kalengan atau jerigen', '2021-07-24 12:46:00', '2021-07-24 12:47:00', 1);
 
 -- --------------------------------------------------------
 
@@ -78,12 +79,19 @@ CREATE TABLE `outstock` (
   `idoutstock` int(11) NOT NULL,
   `idproduk` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
-  `notes` int(11) NOT NULL,
-  `outstockdate` datetime NOT NULL,
+  `notes` text NOT NULL,
+  `outstockdate` date NOT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `is_active` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `outstock`
+--
+
+INSERT INTO `outstock` (`idoutstock`, `idproduk`, `qty`, `notes`, `outstockdate`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 2, 1, '0', '2021-07-24', '2021-07-24 14:53:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -94,6 +102,7 @@ CREATE TABLE `outstock` (
 CREATE TABLE `products` (
   `idproduk` int(11) NOT NULL,
   `namaproduk` varchar(80) NOT NULL,
+  `sisastock` int(11) NOT NULL,
   `deskripsi` text NOT NULL,
   `idkategori` int(11) NOT NULL,
   `idunit` int(11) NOT NULL,
@@ -108,9 +117,11 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`idproduk`, `namaproduk`, `deskripsi`, `idkategori`, `idunit`, `hargasatuan`, `foto`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'kampas kopling mio', '', 1, 3, 50000, '', '2021-07-18 09:57:00', '2021-07-18 10:26:00', 0),
-(2, 'Roller Kawahara', 'qqqq', 2, 3, 90000, 'product-20210718100719.jpg', '2021-07-18 10:07:00', '2021-07-18 10:26:00', 1);
+INSERT INTO `products` (`idproduk`, `namaproduk`, `sisastock`, `deskripsi`, `idkategori`, `idunit`, `hargasatuan`, `foto`, `created_at`, `updated_at`, `is_active`) VALUES
+(1, 'kampas kopling mio', 0, '', 1, 3, 50000, '', '2021-07-18 09:57:00', '2021-07-18 10:26:00', 0),
+(2, 'Roller Kawahara', 9, 'qqqq', 2, 3, 90000, 'product-20210718100719.jpg', '2021-07-18 10:07:00', '2021-07-24 14:53:00', 1),
+(3, 'Kopling x', 0, '', 1, 3, 50000, 'product-20210724082009.jpg', '2021-07-24 08:20:00', NULL, 1),
+(4, 'Yamalube', 0, '', 4, 4, 48000, 'product-20210724124747.jpg', '2021-07-24 12:47:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -123,12 +134,19 @@ CREATE TABLE `purchasestock` (
   `idsupplier` int(11) NOT NULL,
   `purchasedate` date NOT NULL,
   `idproduk` int(11) NOT NULL,
-  `notes` text NOT NULL,
+  `notes` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `is_active` int(11) NOT NULL,
   `qty` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `purchasestock`
+--
+
+INSERT INTO `purchasestock` (`idpurchase`, `idsupplier`, `purchasedate`, `idproduk`, `notes`, `created_at`, `updated_at`, `is_active`, `qty`) VALUES
+(1, 1, '2021-07-24', 2, 'barang sudah diterima dalam keadaan baik', '2021-07-24 13:27:00', NULL, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -194,7 +212,7 @@ CREATE TABLE `salesheader` (
 --
 
 CREATE TABLE `stock` (
-  `idstok` int(11) NOT NULL,
+  `id` int(11) NOT NULL,
   `idproduk` int(11) NOT NULL,
   `sisastock` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
@@ -254,7 +272,8 @@ CREATE TABLE `units` (
 INSERT INTO `units` (`idunit`, `namaunit`, `deskripsi`, `created_at`, `updated_at`, `is_active`) VALUES
 (1, 'Kilogram', 'Kilogram', '2021-07-17 16:25:01', '2021-07-17 16:36:00', 1),
 (2, 'Pcs', '', '2021-07-17 16:30:00', '2021-07-17 16:39:00', 0),
-(3, 'Pcs', 'zzz', '2021-07-17 16:44:00', NULL, 1);
+(3, 'Pcs', 'zzz', '2021-07-17 16:44:00', NULL, 1),
+(4, 'liter', 'zz', '2021-07-24 12:46:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -303,6 +322,7 @@ ALTER TABLE `kategori`
 -- Indexes for table `outstock`
 --
 ALTER TABLE `outstock`
+  ADD PRIMARY KEY (`idoutstock`),
   ADD KEY `fk_product_outstock` (`idproduk`);
 
 --
@@ -346,7 +366,7 @@ ALTER TABLE `salesheader`
 -- Indexes for table `stock`
 --
 ALTER TABLE `stock`
-  ADD PRIMARY KEY (`idstok`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_stock_product` (`idproduk`);
 
 --
@@ -381,19 +401,25 @@ ALTER TABLE `company`
 -- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idkategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `outstock`
+--
+ALTER TABLE `outstock`
+  MODIFY `idoutstock` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idproduk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `purchasestock`
 --
 ALTER TABLE `purchasestock`
-  MODIFY `idpurchase` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpurchase` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `rekening`
@@ -411,7 +437,7 @@ ALTER TABLE `salesheader`
 -- AUTO_INCREMENT for table `stock`
 --
 ALTER TABLE `stock`
-  MODIFY `idstok` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -423,7 +449,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `idunit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idunit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`

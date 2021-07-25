@@ -121,14 +121,19 @@
                         <!-- Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
+
+                            <?php if ($this->session->userdata('foto') != null) { ?>
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <?php if ($this->session->userdata('fotoPsikolog') != null) { ?>
-                                    <img src="<?=base_url('uploads/psikolog/'.$this->session->userdata('fotoPsikolog'))?>" width="30" class="profile-pic rounded-circle"> 
-                                <?php } else { ?>
-                                    <img src="<?=base_url('assets/no_image.jpg')?>"  width="30" class="profile-pic rounded-circle" > 
-                                <?php } ?>
+                                    <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" width="30" class="profile-pic rounded-circle"> 
                             </a>
+                            <?php }  else { ?>
+                                <!-- <li class="sidebar-item">  -->
+                                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="<?=site_url('auth')?>" aria-expanded="false">
+                                       Login
+                                    </a>
+                                <!-- </li> -->
+                            <?php } ?>
                             <div class="dropdown-menu mailbox dropdown-menu-right scale-up">
                                 <ul class="dropdown-user list-style-none">
                                     <li>
@@ -169,14 +174,13 @@
         <aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
+                
+                    <?php if ($this->session->userdata('foto') != null) { ?>
                 <div class="user-profile position-relative" style="background: url(<?php echo base_url()?>assets/src/assets/images/background/user-info.jpg) no-repeat;">
                     <!-- User profile image -->
                     <div class="profile-img">
-                    <?php if ($this->session->userdata('fotoPsikolog') != null) { ?>
-                        <img src="<?=base_url('uploads/psikolog/'.$this->session->userdata('fotoPsikolog'))?>" class="rounded w-100"> 
-                    <?php } else { ?>
-                        <img src="<?=base_url('assets/no_image.jpg')?>" class="rounded" width="80"> 
-                    <?php } ?>
+                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" class="rounded w-100"> 
+                   
                      </div>
                     <!-- User profile text-->
                     <div class="profile-text pt-1"> 
@@ -184,83 +188,15 @@
                         
                     </div>
                 </div>
+                <?php } ?>
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
 
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'dashboard' ? 'active' : null?>" href="<?=site_url('dashboard/dashboardAdmin')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Dashboard</span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=site_url('dashboard')?>" aria-expanded="false">
+                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">All Products</span>
                             </a>
-                        </li>
-
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Master Data</span>
-                        </li>
-
-                        <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'company' ? 'active' : null?>" href="<?=site_url('company/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Profil Bengkel</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'rekening' ? 'active' : null?>" href="<?=site_url('rekening/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Rekening</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'supplier' ? 'active' : null?>" href="<?=site_url('supplier/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-package"></i><span class="hide-menu">Supplier</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i
-                                    class="mdi mdi-bookmark-plus-outline"></i><span class="hide-menu">Products </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('unit')?>" class="sidebar-link <?=$active_menu == 'unit' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Units</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('kategori')?>" class="sidebar-link <?=$active_menu == 'kategori' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Kategori</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('barang')?>" class="sidebar-link <?=$active_menu == 'barang' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Products</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Transaksi</span>
-                        </li>
-                        <li class="sidebar-item <?=$active_menu == 'booking' ? 'active' : null?>"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'booking' ? 'active' : null?>" href="<?=site_url('konseling/data')?>" aria-expanded="false">
-                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Sales</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item "> <a class="sidebar-link has-arrow waves-effect waves-dark <?=$active_menu == 'stock' ? 'active' : null?>"
-                                href="javascript:void(0)" aria-expanded="false"><i
-                                    class="mdi mdi-bookmark-plus-outline"></i><span class="hide-menu">Stock </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item ">
-                                    <a href="<?=site_url('stock/inStockList')?>" class="sidebar-link ">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Purchase Order</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('stock/outStockList')?>" class="sidebar-link">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Out Stock</span>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </nav>

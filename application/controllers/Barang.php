@@ -21,6 +21,15 @@ class Barang extends CI_Controller {
 		$this->load->view('template', $data);
         $this->load->view('barang/barang-list', $data);
     }
+
+    public function details($id){
+        $data = array(
+            'active_menu' => 'barang',
+            'data_barang' => $this->barang_model->get($id)->row()
+        );
+		$this->load->view('template-customer', $data);
+        $this->load->view('ecommerce/product-details', $data);
+    }
     
     public function add(){
         $data = array(

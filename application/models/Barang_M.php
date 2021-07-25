@@ -6,11 +6,10 @@ class Barang_M extends CI_Model {
     protected $table = 'products';
     
     public function get($id = null){
-        $this->db->select('a.*, b.namakategori, c.namaunit, d.sisastock');
+        $this->db->select('a.*, b.namakategori, c.namaunit');
         $this->db->from('products a');
         $this->db->join('kategori b', 'a.idkategori = b.idkategori');
         $this->db->join('units c', 'a.idunit = c.idunit');
-        $this->db->join('stock d', 'a.idproduk = d.idproduk', 'left');
         if($id != null){
             $this->db->where('a.idproduk', $id);
         }

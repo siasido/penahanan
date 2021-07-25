@@ -4,8 +4,16 @@ class Dashboard extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		// $this->load->model('Paket_M', 'paket_m');
+		$this->load->model('Barang_M', 'barang_model');
 		
+	}
+
+	public function index(){
+		$data = array(
+			'data' => $this->barang_model->get()->result()
+		);
+		$this->load->view('template-customer', $data);
+		$this->load->view('ecommerce/products', $data);
 	}
 
 	public function dashboardAdmin(){
