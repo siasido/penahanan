@@ -1,3 +1,4 @@
+
     <div class="page-wrapper" style="display: block;">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -9,28 +10,6 @@
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
                         <li class="breadcrumb-item active">Products Cart</li>
                     </ol>
-                </div>
-                <div class="col-md-7 col-12 align-self-center d-none d-md-block">
-                    <div class="d-flex mt-2 justify-content-end">
-                        <div class="d-flex mr-3 ml-2">
-                            <div class="chart-text mr-2">
-                                <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                <h4 class="mt-0 text-info">$58,356</h4>
-                            </div>
-                            <div class="spark-chart">
-                                <div id="monthchart"><canvas width="60" height="35" style="display: inline-block; width: 60px; height: 35px; vertical-align: top;"></canvas></div>
-                            </div>
-                        </div>
-                        <div class="d-flex ml-2">
-                            <div class="chart-text mr-2">
-                                <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                <h4 class="mt-0 text-primary">$48,356</h4>
-                            </div>
-                            <div class="spark-chart">
-                                <div id="lastmonthchart"><canvas width="60" height="35" style="display: inline-block; width: 60px; height: 35px; vertical-align: top;"></canvas></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -48,14 +27,14 @@
                     <div class="col-md-9 col-lg-9">
                         <div class="card">
                             <div class="card-header bg-info">
-                                <h5 class="mb-0 text-white">Your Cart (4 items)</h5>
+                                <h5 class="mb-0 text-white">Keranjang Belanja (<?=$totalitems?> items)</h5>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table product-overview">
                                         <thead>
                                             <tr>
-                                                <th>Image</th>
+                                                <th>Foto</th>
                                                 <th>Product info</th>
                                                 <th>Price</th>
                                                 <th>Quantity</th>
@@ -64,63 +43,34 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            
+                                        <?php foreach ($contents as $items): ?>
+                                            
                                             <tr>
-                                                <td width="150"><img src="../assets/images/gallery/chair.jpg" alt="iMac" width="80"></td>
+
+                                            <?php if ($items['rowid'] == TRUE): ?>
+                                                <p>
+                                                    <?php foreach ($items['options'] as $key => $value): ?>
+                                                        <td width="150"><img src="<?=base_url('uploads/products/'.$value)?>" alt="iMac" width="80"></td>
+                                                    <?php endforeach; ?>
+                                                </p>
+                                            <?php endif; ?>
                                                 <td width="550">
-                                                    <h5 class="font-500">Rounded Chair</h5>
-                                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look</p>
+                                                    <h5 class="font-500"><?=$items['name']?></h5>
                                                 </td>
-                                                <td>$153</td>
+                                                <td>Rp.<?=number_format($items['price'])?></td>
                                                 <td width="70">
-                                                    <input type="text" class="form-control" placeholder="1">
+                                                    <input type="text" class="form-control" placeholder="<?=$items['qty']?>">
                                                 </td>
-                                                <td width="150" align="center" class="font-500">$153</td>
+                                                <td width="150" align="center" class="font-500">Rp.<?=number_format($items['price']*$items['qty'])?></td>
                                                 <td align="center"><a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-dark"></i></a></td>
                                             </tr>
-                                            <tr>
-                                                <td><img src="../assets/images/gallery/chair2.jpg" alt="iMac" width="80"></td>
-                                                <td>
-                                                    <h5 class="font-500">Rounded Chair</h5>
-                                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look</p>
-                                                </td>
-                                                <td>$153</td>
-                                                <td>
-                                                    <input type="text" class="form-control" placeholder="1">
-                                                </td>
-                                                <td class="font-500" align="center">$153</td>
-                                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-dark"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../assets/images/gallery/chair3.jpg" alt="iMac" width="80"></td>
-                                                <td>
-                                                    <h5 class="font-500">Rounded Chair</h5>
-                                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look</p>
-                                                </td>
-                                                <td>$153</td>
-                                                <td>
-                                                    <input type="text" class="form-control" placeholder="1">
-                                                </td>
-                                                <td class="font-500" align="center">$153</td>
-                                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-dark"></i></a></td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="../assets/images/gallery/chair4.jpg" alt="iMac" width="80"></td>
-                                                <td>
-                                                    <h5 class="font-500">Rounded Chair</h5>
-                                                    <p>Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look</p>
-                                                </td>
-                                                <td>$153</td>
-                                                <td>
-                                                    <input type="text" class="form-control" placeholder="1">
-                                                </td>
-                                                <td class="font-500" align="center">$153</td>
-                                                <td align="center"><a href="javascript:void(0)" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-dark"></i></a></td>
-                                            </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                     <hr>
                                     <div class="d-flex no-block align-items-center">
-                                        <button class="btn btn-dark btn-outline"><i class="fas fa-arrow-left"></i> Continue shopping</button>
+                                        <a href="<?=site_url('dashboard')?>" class="btn btn-dark btn-outline"><i class="fas fa-arrow-left"></i> Continue shopping</a>
                                         <div class="ml-auto">
                                             <button class="btn btn-danger"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
                                         </div>
@@ -136,17 +86,10 @@
                                 <h5 class="card-title">CART SUMMARY</h5>
                                 <hr>
                                 <small>Total Price</small>
-                                <h2>$612</h2>
+                                <h2>Rp.<?=number_format($totalamount)?></h2>
                                 <hr>
                                 <button class="btn btn-success">Checkout</button>
                                 <button class="btn btn-secondary btn-outline">Cancel</button>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">For Any Support</h5>
-                                <hr>
-                                <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4> <small>Please contact with us if you have any questions. We are avalible 24h.</small>
                             </div>
                         </div>
                     </div>

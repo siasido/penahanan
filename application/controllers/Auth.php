@@ -36,7 +36,7 @@ class Auth extends CI_Controller {
                 if ($data->role == 1){
                     redirect('dashboard/dashboardAdmin');
                 } else {
-                    redirect('dashboard/customer');
+                    redirect('dashboard');
                 }
             } else {
                 echo "<script>

@@ -26,6 +26,12 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
+                            <form action="<?=site_url('cart/submit')?>" method="post">
+                                <input type="hidden" name="idproduk" value="<?=$this->input->post('idproduk') ?? $data_barang->idproduk?>">
+                                <input type="hidden" name="namaproduk" value="<?=$this->input->post('namaproduk') ?? $data_barang->namaproduk?>">
+                                <input type="hidden" name="hargasatuan" value="<?=$this->input->post('hargasatuan') ?? $data_barang->hargasatuan?>">
+                                <input type="hidden" name="foto" value="<?=$this->input->post('foto') ?? $data_barang->foto?>">
+
                                 <h3 class="card-title"><?=$data_barang->namaproduk?></h3>
                                 <!-- <h6 class="card-subtitle">globe type chair for rest</h6> -->
                                 <div class="row">
@@ -36,7 +42,7 @@
                                         <h4 class="box-title mt-5">Product description</h4>
                                         <p><?=$data_barang->deskripsi?></p>
                                         <h2 class="mt-5">Rp.<?=$data_barang->hargasatuan?></h2>
-                                        <a href="<?=site_url('orders/cart')?>" class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> </a>
+                                        <button name="submit" type="submit" class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> </button>
                                         <button class="btn btn-primary btn-rounded"> Buy Now </button>
                                         <h3 class="box-title mt-5">Sisa Stock :</h3>
                                         <ul class="list-unstyled">
@@ -63,6 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
+                            </form>
                             </div>
                         </div>
                     </div>

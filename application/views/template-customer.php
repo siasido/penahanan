@@ -116,7 +116,28 @@
                     <!-- ============================================================== -->
                     <ul class="navbar-nav">
                         
-                        
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i
+                                    class="mdi mdi-cart"></i>
+                                <!-- <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div> -->
+                                <span class="badge py-1 badge-danger ml-auto"><?=$this->cart->total_items()?? '' ?></span>
+                            </a>
+                            <div class="dropdown-menu mailbox dropdown-menu-right scale-up" aria-labelledby="2">
+                                <ul class="list-style-none">
+                                    <li>
+                                        <div class="border-bottom rounded-top py-3 px-4">
+                                            <h5 class="font-weight-small mb-0">Kamu punya <?=$this->cart->total_items()?? '' ?> item di keranjang</h5>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="nav-link border-top text-center text-dark pt-3" href="<?=site_url('cart/show')?>"> <b>Lihat Keranjang</b> <i class="fa fa-angle-right"></i> </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
                         <!-- ============================================================== -->
                         <!-- Profile -->
                         <!-- ============================================================== -->
