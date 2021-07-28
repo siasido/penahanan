@@ -6,10 +6,10 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">Products Cart</h3>
+                    <h3 class="text-themecolor mb-0">Checkout Keranjang</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Products Cart</li>
+                        <li class="breadcrumb-item active">Checkout Keranjang</li>
                     </ol>
                 </div>
             </div>
@@ -42,78 +42,117 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <!-- Column -->
-                    <div class="col-md-9 col-lg-9">
+                    <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header bg-info">
-                                <h5 class="mb-0 text-white">Keranjang Belanja (<?=$totalitems?> items)</h5>
-                            </div>
                             <div class="card-body">
+                                <h5 class="card-title">Daftar Belanja</h5>
                                 <div class="table-responsive">
-                                <form action="<?=site_url('cart/updateCart')?>" method="post">
-                                    <table class="table product-overview">
+                                    <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Foto</th>
-                                                <th>Product info</th>
-                                                <th>Price</th>
+                                                <th>Foto Barang</th>
+                                                <th>Nama Barang</th>
                                                 <th>Quantity</th>
-                                                <th style="text-align:center">Total</th>
-                                                <th style="text-align:center">Action</th>
+                                                <th>Harga Satuan</th>
+                                                <th>Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                        <?php $index = 1;?>
-                                        <?php foreach ($contents as $items): ?>
-                                            
+                                        <?php foreach ($this->cart->contents() as $items): ?>
                                             <tr>
-
-                                            <?php if ($items['rowid'] == TRUE): ?>
-                                                <p>
+                                                <td>
                                                     <?php foreach ($items['options'] as $key => $value): ?>
-                                                        <td width="150"><img src="<?=base_url('uploads/products/'.$value)?>" alt="iMac" width="80"></td>
+                                                        <img src="<?=base_url('uploads/products/'.$value)?>" alt="iMac" width="80">
                                                     <?php endforeach; ?>
-                                                </p>
-                                            <?php endif; ?>
-                                                <td width="550">
-                                                    <h5 class="font-500"><?=$items['name']?></h5>
                                                 </td>
-                                                <td>Rp<?=number_format($items['price'])?></td>
-                                                <td width="70">
-                                                    <input type="number" min="0" maxlength="5" name="<?=$index?>[qty]" data-index="<?=$index?>"  class="form-control" value="<?=$items['qty']?>" data-hargasatuan="<?=$items['price']?>" onchange="updateQty(this)">
-                                                </td>
-                                                <td width="150" id="<?=$index?>subtotal" align="center" class="font-500">Rp.<?=number_format($items['price']*$items['qty'])?></td>
-                                                <td align="center"><a href="<?=site_url('cart/remove/'.$items['rowid'])?>" class="text-inverse" title="" data-toggle="tooltip" data-original-title="Delete"><i class="ti-trash text-dark"></i></a></td>
+                                                <td><?=$items['name']?></td>
+                                                <td><?=$items['qty']?></td>
+                                                <td class="font-500">Rp<?=number_format($items['price'])?></td>
+                                                <td class="font-500">Rp<?=number_format($items['qty']*$items['price'])?></td>
                                             </tr>
-                                        <?php $index++; ?>
                                         <?php endforeach; ?>
+                                            <tr>
+                                                <td colspan="4" class="font-500" align="right">Total Harga</td>
+                                                <td class="font-500"><strong>Rp<?=number_format($this->cart->total())?></strong></td>
+                                            </tr>
                                         </tbody>
                                     </table>
-                                    <hr>
-                                    <div class="d-flex no-block align-items-center">
-                                        <a href="<?=site_url('dashboard')?>" class="btn btn-dark btn-outline"><i class="fas fa-arrow-left"></i> Continue shopping</a>
-                                        <div class="ml-auto">
-                                            <button type="submit" name="submit" class="btn btn-danger"><i class="fa fa fa-shopping-cart"></i> Update Cart</button>
+                                </div>
+                                <hr>
+                                <h5 class="card-title">Checkout Keranjang</h5>
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="nav-item">
+                                        <a href="#iprofile" class="nav-link active" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">
+                                        <span class="visible-xs"><i class="ti-home"></i></span><span class="hidden-xs"> Data Penerima</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="iprofile">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <form>
+                                                    <div class="form-group input-group mt-5">
+                                                        <div class="input-group-prepend">
+                                                            <!-- <span class="input-group-text"><i class="fab fa-cc-visa"></i></span> -->
+                                                        </div>
+                                                        <!-- <input type="text" class="form-control" placeholder="Card Number" aria-label="Amount (to the nearest dollar)"> -->
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-xs-7 col-md-7">
+                                                            <div class="form-group">
+                                                                <label>Nama Penerima</label>
+                                                                <input type="text" class="form-control" name="namapenerima" nama="<?=$this->input->post('nama')?>" placeholder="John Doe" required=""> </div>
+                                                        </div>
+                                                        <div class="col-xs-5 col-md-5 pull-right">
+                                                            <div class="form-group">
+                                                                <label>No. HP</label>
+                                                                <input type="number" class="form-control" name="nohppenerima" value="<?=$this->input->post('nohppenerima')?>" placeholder="0812xxx..." required=""> </div>
+                                                        </div>
+                                                        <div class="col-xs-7 col-md-7">
+                                                            <div class="form-group">
+                                                                <label>Alamat</label>
+                                                                <textarea class="form-control" id="alamat" name="alamat" rows="2" ><?=$this->input->post('alamat')?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-5 col-md-5 pull-right">
+                                                            <div class="form-group">
+                                                                <label>Jasa Pengiriman</label>
+                                                                <select class="select2 form-control custom-select <?=form_error('kurir') ? 'is-invalid' : null ?>" name="kurir" style="width: 100%; height:36px;">
+                                                                    <option value="">Pilih Jasa Pengiriman</option>
+                                                                    <option value="JNE" <?php echo set_select('kurir','JNE')?>> JNE</option>
+                                                                    <option value="Sicepat" <?php echo set_select('kurir','Sicepat')?>> Sicepat</option>
+                                                                    <option value="JNT" <?php echo set_select('kurir','JNT')?>> JNT</option>
+                                                                    <option value="Tiki" <?php echo set_select('kurir','Tiki')?>> Tiki</option>
+                                                                    <option value="POS" <?php echo set_select('kurir','POS')?>> POS</option>
+                                                                </select>
+                                                                <div class="text-danger">
+                                                                    <small><?php echo form_error('kurir'); ?></small>
+                                                                </div>
+                                                            </div>  
+                                                        </div>
+                                                        <div class="col-xs-7 col-md-7">
+                                                            <div class="form-group">
+                                                                <label>Rekening Pembayaran</label>
+                                                                <select class="select2 form-control custom-select <?=form_error('idrekening') ? 'is-invalid' : null ?>" name="idrekening" style="width: 100%; height:36px;">
+                                                                    <!-- <option value="">Pilih Supplier</option> -->
+                                                                    <?php foreach ($data_rekening as $key => $val) {?>
+                                                                        <option value="<?=$key?>" <?=set_value('idrekening') == $key ? 'selected' : null;?>> <?=$val['rekening']?></option>
+                                                                    <?php } ?>
+                                                                
+                                                                </select>
+                                                                <div class="text-danger">
+                                                                    <small><?php echo form_error('idsupplier'); ?></small>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-info">Make Payment</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Column -->
-                    <div class="col-md-3 col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">CART SUMMARY</h5>
-                                <hr>
-                                <small>Total Price</small>
-                                <h2>Rp.<?=number_format($totalamount)?></h2>
-                                <hr>
-                                <a href="<?=site_url('orders/checkout')?>" class="btn btn-success">Checkout</a>
-                                <a href="<?=site_url('dashboard')?>" class="btn btn-secondary btn-outline">Cancel</a>
                             </div>
                         </div>
                     </div>
