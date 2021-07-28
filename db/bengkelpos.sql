@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 25, 2021 at 09:14 AM
+-- Generation Time: Jul 28, 2021 at 04:50 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -170,7 +170,9 @@ CREATE TABLE `rekening` (
 
 INSERT INTO `rekening` (`idrekening`, `namaakun`, `namabank`, `norek`, `created_at`, `updated_at`, `is_active`) VALUES
 (1, 'Andi Sen', 'BRI', '014121000', '2021-07-18 10:58:00', '2021-07-18 11:01:00', 0),
-(2, 'Andi S', 'BCA', '014121001', '2021-07-18 10:59:00', NULL, 1);
+(2, 'Andi S', 'BCA', '014121001', '2021-07-18 10:59:00', NULL, 1),
+(3, 'Andi law', 'BNI', '0912313221321', '2021-07-28 16:43:00', NULL, 1),
+(4, 'Andi law', 'Mandiri', '0198991231231', '2021-07-28 16:44:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -425,7 +427,7 @@ ALTER TABLE `purchasestock`
 -- AUTO_INCREMENT for table `rekening`
 --
 ALTER TABLE `rekening`
-  MODIFY `idrekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idrekening` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `salesheader`
