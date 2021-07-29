@@ -241,8 +241,8 @@
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Transaksi</span>
                         </li>
-                        <li class="sidebar-item <?=$active_menu == 'booking' ? 'active' : null?>"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'booking' ? 'active' : null?>" href="<?=site_url('konseling/data')?>" aria-expanded="false">
+                        <li class="sidebar-item <?=$active_menu == 'order' ? 'active' : null?>"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('orders/allorder')?>" aria-expanded="false">
                                 <i class="mdi mdi-content-paste"></i><span class="hide-menu">Sales</span>
                             </a>
                         </li>

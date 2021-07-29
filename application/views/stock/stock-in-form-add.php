@@ -26,7 +26,7 @@
                         <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk purchase barang:</p>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
-                                <form action="<?=site_url('stock/submitInStock')?>" method="post" enctype="multipart/form-data">
+                                <form action="<?=site_url('stock/submitInStock')?>" method="post">
                                     <div class="row">
                                         <input type="hidden" name="idpurchase">
                                         <div class="col-sm-12 col-md-6 mb-3 mb-md-0">

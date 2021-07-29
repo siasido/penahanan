@@ -219,6 +219,11 @@
                                 <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">All Products</span>
                             </a>
                         </li>
+                        <li class="sidebar-item"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=site_url('orders/myorderlist')?>" aria-expanded="false">
+                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Pesanan Saya</span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

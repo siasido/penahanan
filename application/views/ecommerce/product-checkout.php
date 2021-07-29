@@ -91,7 +91,8 @@
                                     <div role="tabpanel" class="tab-pane active" id="iprofile">
                                         <div class="row">
                                             <div class="col-md-7">
-                                                <form>
+                                                <form action="<?=site_url('orders/prosescheckout')?>" method="post">
+                                                <?php $no_order = date('YmdHis').strtoupper(random_string('alnum',8))?>
                                                     <div class="form-group input-group mt-5">
                                                         <div class="input-group-prepend">
                                                             <!-- <span class="input-group-text"><i class="fab fa-cc-visa"></i></span> -->
@@ -102,20 +103,39 @@
                                                         <div class="col-xs-7 col-md-7">
                                                             <div class="form-group">
                                                                 <label>Nama Penerima</label>
-                                                                <input type="text" class="form-control" name="namapenerima" nama="<?=$this->input->post('nama')?>" placeholder="John Doe" required=""> </div>
+                                                                <input type="hidden" name="no_order" value="<?=$no_order?>">
+                                                                <input type="hidden" name="total" value="<?=$this->cart->total()?>">
+                                                                <input type="text" class="form-control" name="namapenerima" value="<?=$this->input->post('namapenerima')?>" placeholder="John Doe"> 
+                                                            </div>
+                                                            <div class="text-danger">
+                                                                <small><?php echo form_error('namapenerima'); ?></small>
+                                                            </div>
                                                         </div>
                                                         <div class="col-xs-5 col-md-5 pull-right">
                                                             <div class="form-group">
                                                                 <label>No. HP</label>
-                                                                <input type="number" class="form-control" name="nohppenerima" value="<?=$this->input->post('nohppenerima')?>" placeholder="0812xxx..." required=""> </div>
+                                                                <input type="number" class="form-control" name="nohppenerima" value="<?=$this->input->post('nohppenerima')?>" placeholder="0812xxx..." > 
+                                                            </div>
+                                                            <div class="text-danger">
+                                                                <small><?php echo form_error('nohppenerima'); ?></small>
+                                                            </div>
                                                         </div>
                                                         <div class="col-xs-7 col-md-7">
                                                             <div class="form-group">
                                                                 <label>Alamat</label>
                                                                 <textarea class="form-control" id="alamat" name="alamat" rows="2" ><?=$this->input->post('alamat')?></textarea>
                                                             </div>
+                                                            <div class="text-danger">
+                                                                <small><?php echo form_error('alamat'); ?></small>
+                                                            </div>
                                                         </div>
                                                         <div class="col-xs-5 col-md-5 pull-right">
+                                                            <div class="form-group">
+                                                                <label>Catatan</label>
+                                                                <textarea class="form-control" id="notes" name="notes" rows="2" ><?=$this->input->post('notes')?></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-7 col-md-7">
                                                             <div class="form-group">
                                                                 <label>Jasa Pengiriman</label>
                                                                 <select class="select2 form-control custom-select <?=form_error('kurir') ? 'is-invalid' : null ?>" name="kurir" style="width: 100%; height:36px;">
@@ -131,7 +151,7 @@
                                                                 </div>
                                                             </div>  
                                                         </div>
-                                                        <div class="col-xs-7 col-md-7">
+                                                        <div class="col-xs-5 col-md-5 pull-right">
                                                             <div class="form-group">
                                                                 <label>Rekening Pembayaran</label>
                                                                 <select class="select2 form-control custom-select <?=form_error('idrekening') ? 'is-invalid' : null ?>" name="idrekening" style="width: 100%; height:36px;">
@@ -147,7 +167,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <button class="btn btn-info">Make Payment</button>
+                                                    <a href="<?=site_url('cart/show')?>" class="btn btn-secondary">Back To Cart</a>
+                                                    <button name="submit" type="submit" class="btn btn-info">Make Payment</button>
                                                 </form>
                                             </div>
                                         </div>
