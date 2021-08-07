@@ -13,8 +13,8 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/assets/images/favicon.png">
-    <title>Monster admin Template - The Ultimate Multipurpose admin template</title>
-	<link rel="canonical" href="https://www.wrappixel.com/templates/monsteradmin/" />
+    <title>Surya Mandiri Motor</title>
+	<link rel="canonical" href="<?php echo base_url()?>assets/images/log.png" />
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/dist/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -68,7 +68,7 @@
                                 
                                 <div class="form-group mb-0">
                                     <div class="col-sm-12 justify-content-center d-flex">
-                                        <p>Don't have an account? <a href="authentication-register1.html" class="text-info font-weight-normal ml-1">Sign Up</a></p>
+                                        <p>Don't have an account? <a href="<?=site_url('users/register')?>" class="text-info font-weight-normal ml-1">Sign Up</a></p>
                                     </div>
                                 </div>
                             </form>

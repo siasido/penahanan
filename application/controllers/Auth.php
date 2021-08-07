@@ -6,11 +6,12 @@ class Auth extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('User_M', 'user_model');
-        
+        // isLogin();
     }
 
     public function index()
     {
+        isLogin();
         $this->load->view('auth/login-page');
     }
 

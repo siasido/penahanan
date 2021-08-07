@@ -172,28 +172,96 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="kirim1">
-                                        <p>Food truck quinoa dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                                            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-                                            quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-                                            dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus
-                                            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-                                            porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                        <div class="table-responsive no-wrap">
+                                            <table class="table product-overview v-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-0">No. Order</th>
+                                                        <th class="border-0">Tanggal</th>
+                                                        <th class="border-0">Penerima</th>
+                                                        <th class="border-0">Kurir</th>
+                                                        <th class="border-0">Total Bayar</th>
+                                                        <th class="border-0">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($data_terkirim as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?=$value->no_order?></td>
+                                                        <td><?=$value->created_at?></td>
+                                                        <td>
+                                                             <p>Nama :<strong><?=$value->namapenerima?></p></strong>
+                                                            <p>No. HP: <?=$value->nohppenerima?></p>
+                                                            <p>Alamat: <?=$value->alamat?></p>
+                                                        </td>
+                                                        <td>
+                                                            <p><strong><?=$value->kurir?></p></strong>
+                                                            <p>No. RESI: <strong><?=$value->noresi?></p></strong>
+                                                            <p>Catatan: <?=$value->notes?></p>
+                                                        </td>
+                                                        <td>
+                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                            <?php if ($value->statusbayar == 0 ) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
+                                                            <?php } else if ($value->statusbayar ==1) { ?>
+                                                                <span class="px-2 py-1 badge badge-success font-weight-100">Menunggu Konfirmasi Admin</span>
+                                                            <?php } else if ($value->statusbayar ==2) { ?>
+                                                                <span class="px-2 py-1 badge badge-danger font-weight-100">Ditolak</span>
+                                                                <p>Catatan: <?=$value->catatanpembayaran?></p>
+                                                            <?php } ?>
+                                                        </td>
+                                                        <td>
+                                                            <a href="<?=site_url('orders/terimabarang/'.$value->idsales)?>" class="btn btn-primary" data-toggle="tooltip" title="" data-original-title="Terima Barang">Terima Barang</a>
+                                                        </td>
+                                                    </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="selesai1">
-                                        <p>Food truck quinoa dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                                            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-                                            quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-                                            dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus
-                                            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-                                            porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                        <div class="table-responsive no-wrap">
+                                            <table class="table product-overview v-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-0">No. Order</th>
+                                                        <th class="border-0">Tanggal</th>
+                                                        <th class="border-0">Penerima</th>
+                                                        <th class="border-0">Kurir</th>
+                                                        <th class="border-0">Total Bayar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($data_diterima as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?=$value->no_order?></td>
+                                                        <td><?=$value->created_at?></td>
+                                                        <td>
+                                                             <p>Nama :<strong><?=$value->namapenerima?></p></strong>
+                                                            <p>No. HP: <?=$value->nohppenerima?></p>
+                                                            <p>Alamat: <?=$value->alamat?></p>
+                                                        </td>
+                                                        <td>
+                                                            <p><strong><?=$value->kurir?></p></strong>
+                                                            <p>No. RESI: <strong><?=$value->noresi?></p></strong>
+                                                            <p>Catatan: <?=$value->notes?></p>
+                                                        </td>
+                                                        <td>
+                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                            <?php if ($value->statusbayar == 0 ) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
+                                                            <?php } else if ($value->statusbayar ==1) { ?>
+                                                                <span class="px-2 py-1 badge badge-success font-weight-100">Menunggu Konfirmasi Admin</span>
+                                                            <?php } else if ($value->statusbayar ==2) { ?>
+                                                                <span class="px-2 py-1 badge badge-danger font-weight-100">Ditolak</span>
+                                                                <p>Catatan: <?=$value->catatanpembayaran?></p>
+                                                            <?php } ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
 

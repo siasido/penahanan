@@ -10,6 +10,7 @@ class Barang extends CI_Controller {
 		$this->load->library('form_validation');
         $this->load->library('upload');
 		$this->load->library('image_lib');
+        isLogout();
 		
     }
 

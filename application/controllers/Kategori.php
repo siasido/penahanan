@@ -6,6 +6,7 @@ class Kategori extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Kategori_M', 'kategori_model');
 		$this->load->library('form_validation');
+        isLogout();
 		
     }
 

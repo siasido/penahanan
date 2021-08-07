@@ -6,7 +6,7 @@ class Supplier extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Supplier_M', 'supplier_model');
 		$this->load->library('form_validation');
-		
+		isLogout();
     }
 
 	public function index(){

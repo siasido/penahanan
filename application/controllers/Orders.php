@@ -109,7 +109,9 @@ class Orders extends CI_Controller {
     public function myorderlist(){
         $data = array(
             'data_orderlist' => $this->order_model->getByUserId($this->session->userdata('userid'))->result(),
-            'data_processedOrderlist' => $this->order_model->getByUserIdAndStatusOrder($this->session->userdata('userid'), 1)->result()
+            'data_processedOrderlist' => $this->order_model->getByUserIdAndStatusOrder($this->session->userdata('userid'), 1)->result(),
+            'data_terkirim' => $this->order_model->getByUserIdAndStatusOrder($this->session->userdata('userid'), 2)->result(),
+            'data_diterima' => $this->order_model->getByUserIdAndStatusOrder($this->session->userdata('userid'), 3)->result()
         );
         $this->load->view('template-customer', $data);
         $this->load->view('ecommerce/myorderlist', $data);
@@ -119,7 +121,9 @@ class Orders extends CI_Controller {
         $data = array(
             'active_menu' => 'order',
             'data_orderlist' => $this->order_model->getAllOrder()->result(),
-            'data_processedOrderlist' => $this->order_model->getOrderByStatusOrder(null, 1)->result()
+            'data_processedOrderlist' => $this->order_model->getOrderByStatusOrder(null, 1)->result(),
+            'data_terkirim' => $this->order_model->getOrderByStatusOrder(null, 2)->result(),
+            'data_diterima' => $this->order_model->getOrderByStatusOrder(null, 3)->result()
             
         );
         // print_r($this->db->last_query());
@@ -130,7 +134,7 @@ class Orders extends CI_Controller {
 
     public function formbayar($id){
         $data = array(
-            'data_order' => $this->order_model->getByOrderid($id)->row()
+            'data_order' => $this->order_model->getByIdSales($id)->row()
         );
         $this->load->view('template-customer', $data);
         $this->load->view('ecommerce/form-bayar', $data);
@@ -141,7 +145,7 @@ class Orders extends CI_Controller {
 
         if (isset($post['submit'])){
 
-            $targetFile = $this->order_model->getByOrderid($post['idsales'])->row()->buktipembayaran;
+            $targetFile = $this->order_model->getByIdSales($post['idsales'])->row()->buktipembayaran;
             if($targetFile){
                 unlink('./uploads/bukti-bayar/'.$targetFile);
             }
@@ -158,7 +162,7 @@ class Orders extends CI_Controller {
                 if (!$this->upload->do_upload('buktipembayaran')){ 
                     $this->session->set_flashdata('notif_failed', 'Gagal upload bukti bayar.');
                     $data = array(
-                        'data_order' => $this->order_model->getByOrderid($post['idsales'])->row()
+                        'data_order' => $this->order_model->getByIdSales($post['idsales'])->row()
                     );
                     $this->load->view('template-customer', $data);
                     $this->load->view('ecommerce/form-bayar', $data);
@@ -181,7 +185,7 @@ class Orders extends CI_Controller {
             
                 $this->session->set_flashdata('notif_failed', 'Anda Belum Mengunggah Bukti Bayar');
                 $data = array(
-                    'data_order' => $this->order_model->getByOrderid($post['idsales'])->row()
+                    'data_order' => $this->order_model->getByIdSales($post['idsales'])->row()
                 );
                 $this->load->view('template-customer', $data);
                 $this->load->view('ecommerce/form-bayar', $data);
@@ -223,8 +227,65 @@ class Orders extends CI_Controller {
         if($this->db->affected_rows() > 0){
             $this->session->set_flashdata('notif_success', 'Berhasil Update Status Pesanan');
             redirect('orders/allorder');
+        } else {
+            $this->session->set_flashdata('notif_failed', 'Gagal Proses Order.');
+            redirect('orders/allorder');
         }
     }
 
+    public function kirimbarang(){
+        $post = $this->input->post(null, true);
+
+        $postData = array(
+            'updated_at' => date('Y-m-d H:i:s'),
+            'statusorder' => 2,
+            'noresi' => $post['noresi']
+        );
+
+        $this->order_model->update($postData, $post['idsales']);
+
+        $orderNumber = $this->order_model->getByIdSales($post['idsales'])->row()->no_order;
+        
+        $orderItems = $this->order_model->getOrderItem($orderNumber);
+        
+        var_dump($orderItems);
+
+        foreach ($orderItems as $key => $value) {
+            $sisastock = $this->barang_model->get($value->idproduk)->row()->sisastock;
+            // echo("sisa stock awal : ".$sisastock);
+            $sisastock = $sisastock - $value->qty;
+            
+            $updateData = array(
+                'sisastock' => $sisastock,
+                'updated_at' => date('Y-m-d H:i:s')
+            );
+
+            $this->barang_model->update($updateData, $value->idproduk);
+        }
+
+        if($this->db->affected_rows() > 0){
+            $this->session->set_flashdata('notif_success', 'Berhasil Update Status Pesanan');
+            
+        } else {
+            $this->session->set_flashdata('notif_failed', 'Gagal Kirim Orderan.');
+        }
+        redirect('orders/allorder');
+    }
     
+    public function terimabarang($idsales){
+        $updatedData = array(
+            'updated_at' => date('Y-m-d H:i:s'),
+            'statusorder' => 3,
+        );
+
+        $this->order_model->update($updatedData, $idsales);
+
+        if($this->db->affected_rows() > 0){
+            $this->session->set_flashdata('notif_success', 'Berhasil Update Status Pesanan');
+            
+        } else {
+            $this->session->set_flashdata('notif_failed', 'Gagal Kirim Orderan.');
+        }
+        redirect('orders/myorderlist');
+    }
 }

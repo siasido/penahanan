@@ -11,6 +11,15 @@ class Order_M extends CI_Model {
         $this->db->insert('salesdetail', $data);
     }
 
+    public function getOrderItem($no_order){
+        $this->db->select();
+        $this->db->from('salesdetail');
+        $this->db->where('no_order', $no_order);
+        $this->db->where('is_active', 1);
+        $query = $this->db->get()->result();
+        return $query;
+    }
+
     public function getByUserId($id){
         $this->db->select('a.*, b.namalengkap, c.namaakun, c.namabank, c.norek');
         $this->db->from('salesheader a');
@@ -41,7 +50,7 @@ class Order_M extends CI_Model {
         return $query;
     }
 
-    public function getByOrderid($id = null){
+    public function getByIdSales($id = null){
         $this->db->select('a.*, b.namalengkap, c.namaakun, c.namabank, c.norek');
         $this->db->from('salesheader a');
         $this->db->join('users b', 'a.userid = b.userid');

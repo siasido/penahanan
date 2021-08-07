@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/src/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/log.png">
     <title>Surya Motor App</title>
 
     
@@ -66,23 +66,13 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="<?=base_url()?>">
                         <!-- Logo icon -->
                         <b class="logo-icon">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="<?php echo base_url()?>assets/images/log.png" style="width: 100px; height: 60px;" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo text -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                        </span>
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -169,7 +159,7 @@
                                             <div class="u-text ml-2">
                                                 <h4 class="mb-0"><?php echo $this->session->userdata('username')?></h4>
                                                 <p class="text-muted mb-1 font-14"><a href="#" class="__cf_email__" data-cfemail=""><?php echo $this->session->userdata('emailPsikolog')?></a></p>
-                                                <a href="#" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
+                                                <a href="<?=site_url('users/myprofile')?>" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
                                                     Profile</a>
                                             </div>
                                         </div>
@@ -219,11 +209,13 @@
                                 <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">All Products</span>
                             </a>
                         </li>
+                        <?php if ($this->session->userdata('role') == 2) { ?>
                         <li class="sidebar-item"> 
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?=site_url('orders/myorderlist')?>" aria-expanded="false">
                                 <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Pesanan Saya</span>
                             </a>
                         </li>
+                        <?php } ?>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

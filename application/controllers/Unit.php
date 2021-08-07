@@ -6,7 +6,7 @@ class Unit extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Unit_M', 'unit_model');
 		$this->load->library('form_validation');
-		
+		isLogout();
     }
 
 	public function index(){

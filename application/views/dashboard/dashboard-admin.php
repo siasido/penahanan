@@ -6,33 +6,11 @@
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">Starter Kit</h3>
+                    <h3 class="text-themecolor mb-0">Dashboard</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Starter Kit</li>
+                        <li class="breadcrumb-item active">Summary</li>
                     </ol>
-                </div>
-                <div class="col-md-7 col-12 align-self-center d-none d-md-block">
-                    <div class="d-flex mt-2 justify-content-end">
-                        <div class="d-flex mr-3 ml-2">
-                            <div class="chart-text mr-2">
-                                <h6 class="mb-0"><small>THIS MONTH</small></h6>
-                                <h4 class="mt-0 text-info">$58,356</h4>
-                            </div>
-                            <div class="spark-chart">
-                                <div id="monthchart"></div>
-                            </div>
-                        </div>
-                        <div class="d-flex ml-2">
-                            <div class="chart-text mr-2">
-                                <h6 class="mb-0"><small>LAST MONTH</small></h6>
-                                <h4 class="mt-0 text-primary">$48,356</h4>
-                            </div>
-                            <div class="spark-chart">
-                                <div id="lastmonthchart"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <!-- ============================================================== -->
@@ -46,14 +24,68 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <div class="row">
-                    <div class="col-12">
-                        <div class="card">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card bg-info">
                             <div class="card-body">
-                                This is some text within a card block.
+                                <div class="d-flex no-block align-items-center">
+                                    <div class="text-white">
+                                        <h2 class="text-white"><?=$totalBarang?></h2>
+                                        <h6 class="text-white">Products</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="text-white display-6"><i class="ti-notepad"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card bg-cyan">
+                            <div class="card-body">
+                                <div class="d-flex no-block align-items-center">
+                                    <div class="text-white">
+                                        <h2 class="text-white"><?=$totalKategori?></h2>
+                                        <h6 class="text-white">Kategori</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="text-white display-6"><i class="ti-clipboard"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card bg-success">
+                            <div class="card-body">
+                                <div class="d-flex no-block align-items-center">
+                                    <div class="text-white">
+                                        <h2 class="text-white"><?=$totalSupplier?></h2>
+                                        <h6 class="text-white">Supplier</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="text-white display-6"><i class="ti-wallet"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card bg-orange">
+                            <div class="card-body">
+                                <div class="d-flex no-block align-items-center">
+                                    <div class="text-white">
+                                        <h2 class="text-white"><?=$totalOrder?></h2>
+                                        <h6 class="text-white">Sales</h6>
+                                    </div>
+                                    <div class="ml-auto">
+                                        <span class="text-white display-6"><i class="ti-stats-down"></i></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

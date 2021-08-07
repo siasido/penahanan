@@ -6,6 +6,7 @@ class Company extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Company_M', 'company_model');
 		$this->load->library('form_validation');
+        isLogout();
 		
     }
 

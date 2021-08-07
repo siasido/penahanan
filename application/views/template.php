@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/src/assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/log.png">
     <title>Surya Motor App</title>
 
     
@@ -71,18 +71,11 @@
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo icon -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="<?php echo base_url()?>assets/images/log.png" style="height: 60px; width: 85px;" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span class="logo-text">
-                            <!-- dark Logo text -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-                            <!-- Light Logo text -->
-                            <img src="<?php echo base_url()?>assets/src/assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                        </span>
+                        
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -123,8 +116,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <?php if ($this->session->userdata('fotoPsikolog') != null) { ?>
-                                    <img src="<?=base_url('uploads/psikolog/'.$this->session->userdata('fotoPsikolog'))?>" width="30" class="profile-pic rounded-circle"> 
+                                <?php if ($this->session->userdata('foto') != null) { ?>
+                                    <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" width="30" class="profile-pic rounded-circle"> 
                                 <?php } else { ?>
                                     <img src="<?=base_url('assets/no_image.jpg')?>"  width="30" class="profile-pic rounded-circle" > 
                                 <?php } ?>
@@ -143,7 +136,7 @@
                                             <div class="u-text ml-2">
                                                 <h4 class="mb-0"><?php echo $this->session->userdata('username')?></h4>
                                                 <p class="text-muted mb-1 font-14"><a href="#" class="__cf_email__" data-cfemail=""><?php echo $this->session->userdata('emailPsikolog')?></a></p>
-                                                <a href="#" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
+                                                <a href="<?=site_url('users/myprofile')?>" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
                                                     Profile</a>
                                             </div>
                                         </div>
@@ -172,8 +165,8 @@
                 <div class="user-profile position-relative" style="background: url(<?php echo base_url()?>assets/src/assets/images/background/user-info.jpg) no-repeat;">
                     <!-- User profile image -->
                     <div class="profile-img">
-                    <?php if ($this->session->userdata('fotoPsikolog') != null) { ?>
-                        <img src="<?=base_url('uploads/psikolog/'.$this->session->userdata('fotoPsikolog'))?>" class="rounded w-100"> 
+                    <?php if ($this->session->userdata('foto') != null) { ?>
+                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" class="rounded w-100"> 
                     <?php } else { ?>
                         <img src="<?=base_url('assets/no_image.jpg')?>" class="rounded" width="80"> 
                     <?php } ?>

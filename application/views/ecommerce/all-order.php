@@ -131,7 +131,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="proses1">
-                                    <div class="table-responsive no-wrap">
+                                        <div class="table-responsive no-wrap">
                                             <table class="table product-overview v-middle">
                                                 <thead>
                                                     <tr>
@@ -171,7 +171,7 @@
                                                         </td>
                                                         <td>
                                                             <?php if ($value->statusorder == 1) { ?>
-                                                                <a href="<?=site_url('orders/kirimorder/'.$value->idsales)?>" class="btn btn-primary">Kirim</a>
+                                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-kirim-<?=$value->idsales?>">Kirim Barang</button>
                                                             <?php } ?>
                                                         </td>
                                                     </tr>
@@ -181,28 +181,100 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="kirim1">
-                                        <p>Food truck quinoa dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                                            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-                                            quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-                                            dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus
-                                            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-                                            porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                        <div class="table-responsive no-wrap">
+                                            <table class="table product-overview v-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-0">No. Order</th>
+                                                        <th class="border-0">Tanggal</th>
+                                                        <th class="border-0">Penerima</th>
+                                                        <th class="border-0">Kurir</th>
+                                                        <th class="border-0">Total Bayar</th>
+                                                        <th class="border-0">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($data_terkirim as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?=$value->no_order?></td>
+                                                        <td><?=$value->created_at?></td>
+                                                        <td>
+                                                             <p>Nama :<strong><?=$value->namapenerima?></p></strong>
+                                                            <p>No. HP: <?=$value->nohppenerima?></p>
+                                                            <p>Alamat: <?=$value->alamat?></p>
+                                                        </td>
+                                                        <td>
+                                                            <p><strong><?=$value->kurir?></p></strong>
+                                                            <p>No RESI: <strong><?=$value->noresi?></p></strong>
+                                                            <p>Catatan: <?=$value->notes?></p>
+                                                        </td>
+                                                        <td>
+                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                            <?php if ($value->statusbayar == 0 ) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
+                                                            <?php } else if ($value->statusbayar ==1) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Menunggu Konfirmasi</span>
+                                                            <?php } else if ($value->statusbayar == 2) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Rejected</span>
+                                                            <?php } else if ($value->statusbayar == 3) { ?>
+                                                                <span class="px-2 py-1 badge badge-success font-weight-100">Accepted</span>
+                                                            <?php } ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php if ($value->statusorder == 1) { ?>
+                                                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-kirim-<?=$value->idsales?>">Kirim Barang</button>
+                                                            <?php } ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                     <div class="tab-pane" id="selesai1">
-                                        <p>Food truck quinoa dolor sit amet, consectetuer adipiscing elit. Aenean
-                                            commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                                            magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-                                            ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-                                            quis enim.</p>
-                                        <p class="mb-0">Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-                                            arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-                                            dictum felis eu pede mollis pretium. Integer tincidunt.Cras dapibus. Vivamus
-                                            elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-                                            porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                                    <div class="table-responsive no-wrap">
+                                            <table class="table product-overview v-middle">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="border-0">No. Order</th>
+                                                        <th class="border-0">Tanggal</th>
+                                                        <th class="border-0">Penerima</th>
+                                                        <th class="border-0">Kurir</th>
+                                                        <th class="border-0">Total Bayar</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($data_diterima as $key => $value) { ?>
+                                                    <tr>
+                                                        <td><?=$value->no_order?></td>
+                                                        <td><?=$value->created_at?></td>
+                                                        <td>
+                                                             <p>Nama :<strong><?=$value->namapenerima?></p></strong>
+                                                            <p>No. HP: <?=$value->nohppenerima?></p>
+                                                            <p>Alamat: <?=$value->alamat?></p>
+                                                        </td>
+                                                        <td>
+                                                            <p><strong><?=$value->kurir?></p></strong>
+                                                            <p>No RESI: <strong><?=$value->noresi?></p></strong>
+                                                            <p>Catatan: <?=$value->notes?></p>
+                                                        </td>
+                                                        <td>
+                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                            <?php if ($value->statusbayar == 0 ) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
+                                                            <?php } else if ($value->statusbayar ==1) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Menunggu Konfirmasi</span>
+                                                            <?php } else if ($value->statusbayar == 2) { ?>
+                                                                <span class="px-2 py-1 badge badge-warning font-weight-100">Rejected</span>
+                                                            <?php } else if ($value->statusbayar == 3) { ?>
+                                                                <span class="px-2 py-1 badge badge-success font-weight-100">Accepted</span>
+                                                            <?php } ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -271,6 +343,70 @@
                                         </div>
                                         <button name="submit" type="submit" class="btn btn-info">Submit</button>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <?php } ?>
+
+
+            <?php foreach ($data_processedOrderlist as $key => $value) { ?>
+            <div class="modal fade" id="modal-kirim-<?=$value->idsales?>" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex align-items-center">
+                            <h4 class="modal-title" id="myLargeModalLabel">Kirim Barang</h4>
+                            <button type="button" class="close ml-auto" data-dismiss="modal"
+                                aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="table-responsive no-wrap">
+                                    <table class="table table-striped">
+                                        <tbody>
+                                            <tr>
+                                                <td>Penerima</td>
+                                                <td>:</td>
+                                                <td><?=$value->namapenerima?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>No.HP</td>
+                                                <td>:</td>
+                                                <td><?=$value->nohppenerima?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Alamat</td>
+                                                <td>:</td>
+                                                <td><?=$value->alamat?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Catatan</td>
+                                                <td>:</td>
+                                                <td><?=$value->notes?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Kurir</td>
+                                                <td>:</td>
+                                                <td><?=$value->kurir?></td>
+                                            </tr>
+                                            <form action="<?=site_url('orders/kirimbarang')?>" method="post">
+                                            <input type="hidden" name="idsales" value="<?=$value->idsales?>">
+                                            <tr>
+                                                <td><strong>No Resi</strong></td>
+                                                <td>:</td>
+                                                <td><input type="text" class="form-control" name="noresi" placeholder="0123FQH1xxx" maxlength="15" required></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td><button type="submit" name="submit" class="btn btn-block btn-primary waves-effect waves-light mr-2">Submit</button></td>
+                                            </tr>
+                                            </form>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

@@ -6,6 +6,7 @@ class Rekening extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Rekening_M', 'rekening_model');
 		$this->load->library('form_validation');
+        isLogout();
 		
     }
 
