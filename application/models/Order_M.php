@@ -13,9 +13,10 @@ class Order_M extends CI_Model {
 
     public function getOrderItem($no_order){
         $this->db->select();
-        $this->db->from('salesdetail');
+        $this->db->from('salesdetail a');
+        $this->db->join('products b', 'a.idproduk = b.idproduk', 'left');
         $this->db->where('no_order', $no_order);
-        $this->db->where('is_active', 1);
+        $this->db->where('a.is_active', 1);
         $query = $this->db->get()->result();
         return $query;
     }

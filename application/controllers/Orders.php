@@ -288,4 +288,22 @@ class Orders extends CI_Controller {
         }
         redirect('orders/myorderlist');
     }
+
+    public function detailPesanan($no_order){
+        
+        $orderItems = $this->order_model->getOrderItem($no_order);
+
+        $data = array(
+            'active_menu' => 'order',
+            'orderItems' => $orderItems
+        );
+
+        if ($this->session->userdata('role') == 2 ) {
+            $this->load->view('template-customer', $data);
+        } else {
+            $this->load->view('template', $data);
+        }
+        
+        $this->load->view('ecommerce/order-items', $data);
+    }
 }

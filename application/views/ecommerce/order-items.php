@@ -1,13 +1,15 @@
-    <div class="page-wrapper">
+
+    <div class="page-wrapper" style="display: block;">
+    
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">Products</h3>
+                    <h3 class="text-themecolor mb-0">Order Items</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                        <li class="breadcrumb-item active">Products List</li>
+                        <li class="breadcrumb-item active">Detail Pesanan</li>
                     </ol>
                 </div>
             </div>
@@ -18,58 +20,92 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
-                <?php if ($this->session->flashdata('notif_success')) { ?>
-                    <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
-                        <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Success - </strong><?= $this->session->flashdata('notif_success') ?>
-                    </div>
-                <?php } ?>
 
-                <?php if ($this->session->flashdata('notif_failed')) { ?>
-                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
-                        <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <strong>Error - </strong> <?= $this->session->flashdata('notif_failed') ?>
-                    </div>
-                <?php } ?>
+            <?php if ($this->session->flashdata('notif_success')) { ?>
+                <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                    <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Success - </strong><?= $this->session->flashdata('notif_success') ?>
+                </div>
+            <?php } ?>
+
+            <?php if ($this->session->flashdata('notif_failed')) { ?>
+                <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                    <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Error - </strong> <?= $this->session->flashdata('notif_failed') ?>
+                </div>
+            <?php } ?>
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row el-element-overlay">
-                    <?php foreach ($data as $key => $value) { ?>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="card">
-                                <div class="el-card-item pb-3">
-                                    <div class="el-card-avatar mb-3 el-overlay-1 w-100 overflow-hidden position-relative text-center"> <img src="<?=base_url('uploads/products/'.$value->foto)?>" class="d-block position-relative w-100" alt="user" />
-                                        <div class="el-overlay w-100 overflow-hidden">
-                                            <ul class="list-style-none el-info text-white text-uppercase d-inline-block p-0">
-                                                <li class="el-item d-inline-block my-0  mx-1"><a class="btn default btn-outline image-popup-vertical-fit el-link text-white border-white" href="<?=base_url('uploads/products/'.$value->foto)?>"><i class="icon-magnifier"></i></a></li>
-                                                <li class="el-item d-inline-block my-0  mx-1"><a class="btn default btn-outline el-link text-white border-white" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
+                <div class="row">
+                    <!-- Column -->
+                    <div class="col-md-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header bg-info">
+                                <h5 class="mb-0 text-white">Detail Pesanan</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                <form action="<?=site_url('cart/updateCart')?>" method="post">
+                                    <table class="table product-overview">
+                                        <thead>
+                                            <tr>
+                                                <th>Foto</th>
+                                                <th>Product info</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th style="text-align:center">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                        <?php $index = 1;?>
+                                        <?php foreach ($orderItems as $key => $value): ?>
+                                            
+                                            <tr>
+                                                <td width="150"><img src="<?=base_url('uploads/products/'.$value->foto)?>" alt="iMac" width="80"></td>
+                                                <td width="550">
+                                                    <h5 class="font-500"><?=$value->namaproduk?></h5>
+                                                </td>
+                                                <td>Rp<?=number_format($value->hargasatuan)?></td>
+                                                <td width="70">
+                                                    <?=$value->qty?>
+                                                </td>
+                                                <td width="150" id="<?=$index?>subtotal" align="center" class="font-500">Rp.<?=$value->hargasatuan*$value->qty?></td>
+                                                
+                                            </tr>
+                                        <?php $index++; ?>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                    <hr>
                                     <div class="d-flex no-block align-items-center">
-                                        <div class="ml-3">
-                                            <h4 class="mb-0"><?=$value->namaproduk?></h4>
-                                            <h5 class="mb-0" style="color: red;">Rp.<?=$value->hargasatuan?></h4>
-                                            <span class="text-muted"><?=$value->namakategori?></span>
-                                        </div>
-                                        <div class="ml-auto mr-3">
-                                            <a href="<?=site_url('barang/details/'.$value->idproduk)?>" class="btn btn-success">Detail</a>
-                                        </div>
+                                        <?php if($this->session->userdata('role') == 2 ) { ?>
+                                            <a href="<?=site_url('orders/myorderlist')?>" class="btn btn-dark btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
+                                        <?php } else { ?>
+                                            <a href="<?=site_url('orders/allorder')?>" class="btn btn-dark btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
+                                        <?php } ?> 
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
-                    <?php }?>
-                    
-                   
+                    </div>
+
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
@@ -85,17 +121,13 @@
             <!-- End footer -->
             <!-- ============================================================== -->
         </div>
-        <!-- ============================================================== -->
-        <!-- End Page wrapper  -->
-        <!-- ============================================================== -->
-    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- customizer Panel -->
     <!-- ============================================================== -->
-    
+
     <!-- <div class="chat-windows"></div> -->
     <!-- ============================================================== -->
     <!-- All Jquery -->
@@ -151,6 +183,19 @@
     <script src="<?php echo base_url()?>assets/src/assets/libs/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker-custom.js"></script>
 
     <script src="<?php echo base_url () ?>assets/src/assets/extra-libs/toastr/dist/build/toastr.min.js"></script>
+    <script>
+        function updateQty(objEvent){ 
+           console.log(objEvent.value);
+           console.log(objEvent.dataset.hargasatuan);
+           console.log(objEvent.dataset.index)
+
+           let qty = objEvent.value;
+           let hargasatuan = objEvent.dataset.hargasatuan;
+           let id = objEvent.dataset.index;
+           
+            document.getElementById(id+'subtotal').innerHTML = 'Rp'+(qty*hargasatuan).toLocaleString(window.document.documentElement.lang);
+        }
+    </script>
 
 </body>
 

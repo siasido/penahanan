@@ -92,7 +92,7 @@
                                                 <tbody>
                                                 <?php foreach ($data_orderlist as $key => $value) { ?>
                                                     <tr>
-                                                        <td><?=$value->no_order?></td>
+                                                        <td><a href="<?=site_url('orders/detailPesanan/'.$value->no_order)?>"><?=$value->no_order?></a></td>
                                                         <td><?=$value->created_at?></td>
                                                         <td>
                                                              <p>Nama :<strong><?=$value->namapenerima?></p></strong>
@@ -146,7 +146,7 @@
                                                 <tbody>
                                                 <?php foreach ($data_processedOrderlist as $key => $value) { ?>
                                                     <tr>
-                                                        <td><?=$value->no_order?></td>
+                                                        <td><a href="<?=site_url('orders/detailPesanan/'.$value->no_order)?>"><?=$value->no_order?></a></td>
                                                         <td><?=$value->created_at?></td>
                                                         <td>
                                                              <p>Nama :<strong><?=$value->namapenerima?></p></strong>
@@ -196,7 +196,7 @@
                                                 <tbody>
                                                 <?php foreach ($data_terkirim as $key => $value) { ?>
                                                     <tr>
-                                                        <td><?=$value->no_order?></td>
+                                                        <td><a href="<?=site_url('orders/detailPesanan/'.$value->no_order)?>"><?=$value->no_order?></a></td>
                                                         <td><?=$value->created_at?></td>
                                                         <td>
                                                              <p>Nama :<strong><?=$value->namapenerima?></p></strong>
@@ -246,7 +246,7 @@
                                                 <tbody>
                                                 <?php foreach ($data_diterima as $key => $value) { ?>
                                                     <tr>
-                                                        <td><?=$value->no_order?></td>
+                                                        <td><a href="<?=site_url('orders/detailPesanan/'.$value->no_order)?>"><?=$value->no_order?></a></td>
                                                         <td><?=$value->created_at?></td>
                                                         <td>
                                                              <p>Nama :<strong><?=$value->namapenerima?></p></strong>

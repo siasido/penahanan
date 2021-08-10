@@ -65,8 +65,8 @@
                                         <tbody>
                                             <?php foreach ($data as $key => $value) { ?>
                                                 <tr>
-                                                <td><?=$value->namaakun?></td>
                                                 <td><?=$value->namabank?></td>
+                                                <td><?=$value->namaakun?></td>
                                                 <td><?=$value->norek?></td>
                                                 <td><?=$value->created_at?></td>
                                                 <td><?=$value->updated_at?></td>

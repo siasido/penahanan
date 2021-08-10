@@ -42,7 +42,7 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(../assets/images/background/login-register.jpg) no-repeat center center; background-size: cover;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?=base_url()?>/assets/src/assets/images/bengkel.jpg) no-repeat center center; background-size: cover;">
             <div class="auth-box on-sidebar p-4 bg-white m-0 rounded">
                 <div>
                     
