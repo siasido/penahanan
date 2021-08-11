@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2021 at 03:36 PM
+-- Generation Time: Aug 11, 2021 at 02:51 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.3.27
 
@@ -249,21 +249,6 @@ INSERT INTO `salesheader` (`idsales`, `userid`, `total`, `idrekening`, `notes`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stock`
---
-
-CREATE TABLE `stock` (
-  `id` int(11) NOT NULL,
-  `idproduk` int(11) NOT NULL,
-  `sisastock` int(11) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  `is_active` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `suppliers`
 --
 
@@ -332,17 +317,20 @@ CREATE TABLE `users` (
   `nohp` varchar(15) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
-  `is_active` int(11) NOT NULL
+  `is_active` int(11) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`userid`, `username`, `password`, `namalengkap`, `foto`, `role`, `nohp`, `created_at`, `updated_at`, `is_active`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'joko triyono', 'bengkel.jpg', 1, '0', '2021-07-17 01:27:52', '2021-07-17 01:27:52', 1),
-(2, 'nana', '893a6a6789d8aef157ac0615ac3855587daaac07', 'nana nana', 'bengkel.jpg', 2, '', '2021-07-17 01:27:52', '2021-07-17 01:27:52', 1),
-(3, 'kalitx', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Johnnie Walker', 'user-20210807130817.jpg', 2, '081112003400', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0);
+INSERT INTO `users` (`userid`, `username`, `password`, `namalengkap`, `foto`, `role`, `nohp`, `created_at`, `updated_at`, `is_active`, `email`, `alamat`) VALUES
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'joko triyono', 'bengkel.jpg', 1, '0', '2021-07-17 01:27:52', '2021-07-17 01:27:52', 1, '', ''),
+(2, 'nana', '893a6a6789d8aef157ac0615ac3855587daaac07', 'nana nana', 'bengkel.jpg', 2, '', '2021-07-17 01:27:52', '2021-07-17 01:27:52', 1, '', ''),
+(3, 'kalitx', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'Johnnie Walker', 'user-20210807130817.jpg', 2, '081112003400', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '', ''),
+(4, 'johnwick', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 'john wick', 'user-20210811133243.jpg', 2, '081121212121121', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, 'a@a.com', 'Jl. Palapa');
 
 --
 -- Indexes for dumped tables
@@ -403,13 +391,6 @@ ALTER TABLE `salesheader`
   ADD PRIMARY KEY (`idsales`),
   ADD KEY `fk_sales_users` (`userid`),
   ADD KEY `fk_sales_rekenign` (`idrekening`);
-
---
--- Indexes for table `stock`
---
-ALTER TABLE `stock`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_stock_product` (`idproduk`);
 
 --
 -- Indexes for table `suppliers`
@@ -482,12 +463,6 @@ ALTER TABLE `salesheader`
   MODIFY `idsales` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `stock`
---
-ALTER TABLE `stock`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -503,7 +478,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -541,12 +516,6 @@ ALTER TABLE `salesdetail`
 ALTER TABLE `salesheader`
   ADD CONSTRAINT `fk_sales_rekenign` FOREIGN KEY (`idrekening`) REFERENCES `rekening` (`idrekening`),
   ADD CONSTRAINT `fk_sales_users` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
-
---
--- Constraints for table `stock`
---
-ALTER TABLE `stock`
-  ADD CONSTRAINT `fk_stock_product` FOREIGN KEY (`idproduk`) REFERENCES `products` (`idproduk`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
