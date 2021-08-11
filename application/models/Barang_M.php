@@ -18,6 +18,19 @@ class Barang_M extends CI_Model {
         return $query;
     }
 
+    public function getByKategori($id = null){
+        $this->db->select('a.*, b.namakategori, c.namaunit');
+        $this->db->from('products a');
+        $this->db->join('kategori b', 'a.idkategori = b.idkategori');
+        $this->db->join('units c', 'a.idunit = c.idunit');
+        if($id != null){
+            $this->db->where('a.idkategori', $id);
+        }
+        $this->db->where('a.is_active', 1);
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function namaproduk_check($namaproduk, $id = null){
         $this->db->select('*');
         $this->db->from($this->table);

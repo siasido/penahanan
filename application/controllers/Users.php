@@ -37,6 +37,8 @@ class Users extends CI_Controller {
             'namalengkap' => $post['namalengkap'],
             'username' => $post['username'],
             'password' => sha1($post['password']),
+            'email' => $post['email'],
+            'alamat' => $post['alamat'],
             'nohp' => $post['nohp'],
             'role' => 2
         );
@@ -103,8 +105,10 @@ class Users extends CI_Controller {
 		$this->form_validation->set_message('max_length', '{field} maksimal {param} karakter.');
 		$this->form_validation->set_message('is_unique', '{field} sudah digunakan, silahkan ganti.');
 		$this->form_validation->set_message('matches', '{field} tidak sesuai dengan kata sandi, silahkan ganti.'); 
+        $this->form_validation->set_message('valid_email', '{field} tidak valid'); 
         
         $this->form_validation->set_rules('namalengkap', 'Nama Lengkap', 'trim|required|min_length[3]|max_length[40]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|max_length[40]');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[4]|max_length[20]|callback_username_check');
         $this->form_validation->set_rules('nohp', 'No. HP', 'trim|required|min_length[11]|max_length[15]');
 
@@ -123,6 +127,8 @@ class Users extends CI_Controller {
             'username' => $post['username'],
             'password' => sha1($post['password']),
             'nohp' => $post['nohp'],
+            'email' => $post['email'],
+            'alamat' => $post['alamat'],
             'role' => 2
         );
 

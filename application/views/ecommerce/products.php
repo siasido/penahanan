@@ -38,6 +38,27 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+                <div class="col-sm-12 col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="<?=site_url('dashboard/index')?>" method="post">
+                                <div class="input-group">
+                                    <select class="custom-select" name="idkategori" id="inputGroupSelect04">
+                                        <option value="">-All Category-</option>
+                                        <?php foreach ($data_kategori as $key => $val) {?>
+                                            <option value="<?=$val->idkategori?>" <?php echo set_select('idkategori', $val->idkategori)?>> <?=$val->namakategori?></option>
+                                        <?php } ?>
+                                    </select>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary" type="submit">Filter</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid">
                 <div class="row el-element-overlay">
                     <?php foreach ($data as $key => $value) { ?>
                         <div class="col-lg-3 col-md-6">
@@ -67,6 +88,7 @@
                     <?php }?>
                     
                    
+                </div>
                 </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->

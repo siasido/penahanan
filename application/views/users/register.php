@@ -77,6 +77,14 @@
                                 </div>
                                 <div class="form-group mt-3">
                                   <div class="col-xs-12">
+                                    <input class="form-control" type="email" id="email" name="email" value="<?=$this->input->post('email')?>" type="text" placeholder="email">
+                                    <div class="text-danger">
+                                      <small><?php echo form_error('email'); ?></small>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                  <div class="col-xs-12">
                                     <input class="form-control" id="password" name="password" value="<?=$this->input->post('password')?>" type="password" placeholder="Password">
                                     <div class="text-danger">
                                       <small><?php echo form_error('password'); ?></small>
@@ -88,6 +96,14 @@
                                     <input class="form-control" id="passconf" name="passconf" value="<?=$this->input->post('passconf')?>" type="password" placeholder="Re-type Password">
                                     <div class="text-danger">
                                       <small><?php echo form_error('passconf'); ?></small>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group mt-3">
+                                  <div class="col-xs-12">
+                                  <textarea class="form-control" id="alamat" name="alamat" rows="2" placeholder="alamat"><?=$this->input->post('alamat')?></textarea>
+                                    <div class="text-danger">
+                                      <small><?php echo form_error('alamat'); ?></small>
                                     </div>
                                   </div>
                                 </div>

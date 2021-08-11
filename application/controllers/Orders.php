@@ -306,4 +306,25 @@ class Orders extends CI_Controller {
         
         $this->load->view('ecommerce/order-items', $data);
     }
+
+    public function report(){
+		$post = $this->input->post(null,true);
+		$orderReports = [];
+        // print_r($post);
+        // exit();
+        if (!isset($post['month'])){
+            $orderReports = $this->order_model->getByMonth(date('n'))->result();
+            
+        } else {
+            $orderReports = $this->order_model->getByMonth($post['month'])->result();
+        }
+		
+
+		$data = array(
+            'active_menu' => 'report',
+			'data_orderlist' => $orderReports
+		);
+		$this->load->view('template', $data);
+		$this->load->view('report/report', $data);
+	}
 }

@@ -5,12 +5,25 @@ class Dashboard extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('Barang_M', 'barang_model');
+		$this->load->model('Kategori_M', 'kategori_model');
 		isLogout();
 	}
 
 	public function index(){
+		$post = $this->input->post(null,true);
+		$products = [];
+	
+		if (!isset($post['idkategori'])){
+			$products = $this->barang_model->get()->result();
+			
+		} else {
+			$products = $this->barang_model->getByKategori($post['idkategori'])->result();
+		}
+			
+
 		$data = array(
-			'data' => $this->barang_model->get()->result()
+			'data' => $products,
+			'data_kategori' => $this->kategori_model->get()->result()
 		);
 		$this->load->view('template-customer', $data);
 		$this->load->view('ecommerce/products', $data);
