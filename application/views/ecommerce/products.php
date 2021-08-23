@@ -75,7 +75,8 @@
                                     <div class="d-flex no-block align-items-center">
                                         <div class="ml-3">
                                             <h4 class="mb-0"><?=$value->namaproduk?></h4>
-                                            <h5 class="mb-0" style="color: red;">Rp.<?=$value->hargasatuan?></h4>
+                                            <h5 class="mb-0" style="color: red;">Rp.<?=number_format($value->hargasatuan,2,',','.')?></h4>
+                                            <h5 class="mb-0">Sisa Stok : <?=$value->sisastock?></h4>
                                             <span class="text-muted"><?=$value->namakategori?></span>
                                         </div>
                                         <div class="ml-auto mr-3">
