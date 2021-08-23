@@ -66,8 +66,8 @@
                                                 <tr>
                                                 <td><?=$value->namakategori?></td>
                                                 <td><?=$value->deskripsi?? "-" ?></td>
-                                                <td><?=$value->created_at?></td>
-                                                <td><?=$value->updated_at?></td>
+                                                <td><?php $created_date = new DateTime($value->created_at); echo $created_date->format('d-m-Y H:i:s')?></td>
+                                                <td><?php $updated_at = new DateTime($value->updated_at); echo $updated_at->format('d-m-Y H:i:s')?></td>
                                                 <td>
                                                     <a href="<?=site_url('kategori/edit/'.$value->idkategori)?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-pencil-alt"></i></a>

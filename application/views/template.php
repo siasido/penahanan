@@ -245,7 +245,7 @@
                             <ul aria-expanded="false" class="collapse  first-level">
                                 <li class="sidebar-item ">
                                     <a href="<?=site_url('stock/inStockList')?>" class="sidebar-link ">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Purchase Order</span>
+                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Order Ke Supplier</span>
                                     </a>
                                 </li>
                                 <li class="sidebar-item">

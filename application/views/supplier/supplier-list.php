@@ -70,8 +70,8 @@
                                                 <td><?=$value->nohp?></td>
                                                 <td><?=$value->alamat?></td>
                                                 <td><?=$value->deskripsi?? "-" ?></td>
-                                                <td><?=$value->created_at?></td>
-                                                <td><?=$value->updated_at?></td>
+                                                <td><?=datetime_indo($value->created_at)?></td>
+                                                <td><?=datetime_indo($value->updated_at)?></td>
                                                 <td>
                                                     <a href="<?=site_url('supplier/edit/'.$value->idsupplier)?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-pencil-alt"></i></a>

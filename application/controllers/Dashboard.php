@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Barang_M', 'barang_model');
 		$this->load->model('Kategori_M', 'kategori_model');
-		isLogout();
+		// isLogout();
 	}
 
 	public function index(){

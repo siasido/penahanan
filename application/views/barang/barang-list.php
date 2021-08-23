@@ -82,8 +82,8 @@
                                                         <img class="" src="<?=base_url('assets/no_image.jpg')?>" width="50px"> 
                                                     <?php } ?>
                                                 </td>
-                                                <td><?=$value->created_at?></td>
-                                                <td><?=$value->updated_at?></td>
+                                                <td><?=datetime_indo($value->created_at)?></td>
+                                                <td><?=datetime_indo($value->updated_at)?></td>
                                                 <td>
                                                     <a href="<?=site_url('barang/edit/'.$value->idproduk)?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-pencil-alt"></i></a>

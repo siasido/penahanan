@@ -66,12 +66,12 @@
                                         <tbody>
                                             <?php foreach ($data as $key => $value) { ?>
                                                 <tr>
-                                                <td><?=$value->outstockdate?></td>
+                                                <td><?=date_indo($value->outstockdate)?></td>
                                                 <td><?=$value->namaproduk?></td>
                                                 <td><?=$value->qty?></td>
                                                 <td><?=$value->notes?></td>
-                                                <td><?=$value->created_at?></td>
-                                                <td><?=$value->updated_at?></td>
+                                                <td><?=datetime_indo($value->created_at)?></td>
+                                                <td><?=datetime_indo($value->updated_at)?></td>
                                                 <td>
                                                     <!-- <a href="<?=site_url('stock/inStockEdit/'.$value->idproduk)?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-pencil-alt"></i></a>  -->

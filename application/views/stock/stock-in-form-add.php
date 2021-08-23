@@ -22,8 +22,8 @@
             <div class="container-fluid">
                 <div class="col-lg-12 col-md-12">
                     <div class="card card-body">
-                        <h3 class="mb-0">Purchase Barang</h3>
-                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk purchase barang:</p>
+                        <h3 class="mb-0">Data Order Barang</h3>
+                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk melakukan pencatatan order barang:</p>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
                                 <form action="<?=site_url('stock/submitInStock')?>" method="post">

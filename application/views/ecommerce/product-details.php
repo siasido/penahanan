@@ -42,8 +42,10 @@
                                         <h4 class="box-title mt-5">Product description</h4>
                                         <p><?=$data_barang->deskripsi?></p>
                                         <h2 class="mt-5">Rp.<?=$data_barang->hargasatuan?></h2>
-                                        <button name="submit" type="submit" class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> </button>
-                                        <button class="btn btn-primary btn-rounded"> Buy Now </button>
+                                       
+                                        <button name="submit" type="submit" <?php echo ($data_barang->sisastock <= 0 ? 'disabled' : null)?> class="btn btn-dark btn-rounded mr-1" data-toggle="tooltip" title="" data-original-title="Add to cart"><i class="ti-shopping-cart"></i> </button>
+                                        
+                                        <button class="btn btn-primary btn-rounded" <?php echo ($data_barang->sisastock <= 0 ? 'disabled' : null)?>> Buy Now </button>
                                         <h3 class="box-title mt-5">Sisa Stock :</h3>
                                         <ul class="list-unstyled">
                                             <li><i class="fa fa-check text-success"></i> <?=$data_barang->sisastock. ' ' .$data_barang->namaunit?> </li>

@@ -71,7 +71,7 @@
                                             <?php foreach ($data_orderlist as $key => $value) { ?>
                                                 <tr>
                                                     <td><?=$value->no_order?></td>
-                                                    <td><?=$value->created_at?></td>
+                                                    <td><?=datetime_indo($value->created_at)?></td>
                                                     <td>
                                                         <p>Nama :<strong><?=$value->namapenerima?></p></strong>
                                                         <p>No. HP: <?=$value->nohppenerima?></p>
