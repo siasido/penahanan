@@ -72,7 +72,7 @@
                                                 <td><?=$value->namakategori?></td>
                                                 <td><?=$value->namaproduk?></td>
                                                 <td><?=$value->namaunit?></td>
-                                                <td><?=$value->hargasatuan?></td>
+                                                <td>Rp<?=number_format($value->hargasatuan,2,',','.')?></td>
                                                 <td><?=$value->sisastock?? 0?></td>
                                                 <td><?=$value->deskripsi?? "-" ?></td>
                                                 <td>

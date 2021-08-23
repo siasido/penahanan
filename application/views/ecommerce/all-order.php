@@ -104,7 +104,7 @@
                                                             <p>Catatan: <?=$value->notes?></p>
                                                         </td>
                                                         <td>
-                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                           <p>Rp<?=number_format($value->total,2,',','.')?></p> 
                                                             <?php if ($value->statusbayar == 0 ) { ?>
                                                                 <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
                                                             <?php } else if ($value->statusbayar ==1) { ?>
@@ -158,7 +158,7 @@
                                                             <p>Catatan: <?=$value->notes?></p>
                                                         </td>
                                                         <td>
-                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                           <p>Rp<?=number_format($value->total,2,',','.')?></p> 
                                                             <?php if ($value->statusbayar == 0 ) { ?>
                                                                 <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
                                                             <?php } else if ($value->statusbayar ==1) { ?>
@@ -209,7 +209,7 @@
                                                             <p>Catatan: <?=$value->notes?></p>
                                                         </td>
                                                         <td>
-                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                           <p>Rp<?=number_format($value->total,2,',','.')?></p> 
                                                             <?php if ($value->statusbayar == 0 ) { ?>
                                                                 <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
                                                             <?php } else if ($value->statusbayar ==1) { ?>
@@ -259,7 +259,7 @@
                                                             <p>Catatan: <?=$value->notes?></p>
                                                         </td>
                                                         <td>
-                                                           <p>Rp<?=number_format($value->total)?></p> 
+                                                           <p>Rp<?=number_format($value->total,2,',','.')?></p> 
                                                             <?php if ($value->statusbayar == 0 ) { ?>
                                                                 <span class="px-2 py-1 badge badge-warning font-weight-100">Belum Bayar</span>
                                                             <?php } else if ($value->statusbayar ==1) { ?>
