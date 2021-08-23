@@ -59,7 +59,7 @@
                                                 <th>Qty</th>
                                                 <th>Deskripsi</th>
                                                 <th>Created At</th>
-                                                <th>Last Updated</th>
+                                                <!-- <th>Last Updated</th> -->
                                                 <!-- <th>Action</th> -->
                                             </tr>
                                         </thead>
@@ -71,7 +71,7 @@
                                                 <td><?=$value->qty?></td>
                                                 <td><?=$value->notes?></td>
                                                 <td><?=datetime_indo($value->created_at)?></td>
-                                                <td><?=datetime_indo($value->updated_at)?></td>
+                                                <!-- <td><?=datetime_indo($value->updated_at)?></td> -->
                                                 <td>
                                                     <!-- <a href="<?=site_url('stock/inStockEdit/'.$value->idproduk)?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                     <i class="fas fa-pencil-alt"></i></a>  -->
