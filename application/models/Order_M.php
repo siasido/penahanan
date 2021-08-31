@@ -116,12 +116,13 @@ class Order_M extends CI_Model {
         $this->db->update('salesheader', $data);
     }
 
-    public function getByMonth($month){
+    public function getByMonthAndYear($month, $year){
         $this->db->select('a.*, b.namalengkap, c.namaakun, c.namabank, c.norek');
         $this->db->from('salesheader a');
         $this->db->join('users b', 'a.userid = b.userid');
         $this->db->join('rekening c', 'a.idrekening = c.idrekening');
         $this->db->where('month(a.created_at)', $month);
+        $this->db->where('year(a.created_at)', $year);
         $this->db->where('a.statusorder', 3);
         $this->db->where('a.is_active', 1);
         $query = $this->db->get();

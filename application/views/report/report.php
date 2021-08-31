@@ -37,6 +37,13 @@
                                         <option value="11">November</option>
                                         <option value="12">Desember</option>
                                     </select>
+                                    <select class="form-control" name="year" required>
+                                    <option value="">- Pilih Tahun -</option>
+                                    <?php
+                                    for ($year = (int)date('Y'); 2020 <= $year; $year--): ?>
+                                        <option value="<?=$year;?>"><?=$year;?></option>
+                                    <?php endfor; ?>
+                                    </select>
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-primary" type="submit">Filter</button>
                                     </div>

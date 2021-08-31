@@ -313,10 +313,10 @@ class Orders extends CI_Controller {
         // print_r($post);
         // exit();
         if (!isset($post['month'])){
-            $orderReports = $this->order_model->getByMonth(date('n'))->result();
+            $orderReports = $this->order_model->getByMonthAndYear(date('n'), date('Y'))->result();
             
         } else {
-            $orderReports = $this->order_model->getByMonth($post['month'])->result();
+            $orderReports = $this->order_model->getByMonthAndYear($post['month'], $post['year'])->result();
         }
 		
 
