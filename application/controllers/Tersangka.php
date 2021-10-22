@@ -84,7 +84,7 @@ class Tersangka extends CI_Controller {
                 $this->load->view('tersangka/tersangka-form-add', $data);
 			} else {
                 $postData = array(
-                    'nama' => $post['nama'],
+                    'nama' => strtoupper($post['nama']),
                     'tempatlahir' => $post['tempatlahir'],
                     'tgllahir' => $post['tgllahir'],
                     'jeniskelamin' => $post['jeniskelamin'],
@@ -139,7 +139,7 @@ class Tersangka extends CI_Controller {
                 $this->load->view('tersangka/tersangka-form-edit', $data);
 			} else {
                 $postData = array(
-                    'nama' => $post['nama'],
+                    'nama' => strtoupper($post['nama']),
                     'tempatlahir' => $post['tempatlahir'],
                     'tgllahir' => $post['tgllahir'],
                     'jeniskelamin' => $post['jeniskelamin'],

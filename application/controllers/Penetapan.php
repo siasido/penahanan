@@ -297,6 +297,8 @@ class Penetapan extends CI_Controller {
                 )
             );
 
+            $section->addText();
+
             $section->addText(
                 'DEMI KEADILAN BERDASARKAN KETUHANAN YANG MAHA ESA',
                 array('bold' => false),
@@ -313,7 +315,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t" .'Telah membaca surat dari Penyidik '. $dataPenetapan->namainstansi. ' Nomor '.$dataPenetapan->nomorpermohonan .' tanggal '.date_indo_text($dataPenetapan->tglpermohonan).' perpanjangan waktu penahanan guna kepentingan pemeriksaan yang belum selesai terhadap Tersangka:'),
+            $section->addText(htmlspecialchars("\t" .'Telah membaca surat dari '. $dataPenetapan->namainstansi. ' Nomor '.$dataPenetapan->nomorpermohonan .' tanggal '.date_indo_text($dataPenetapan->tglpermohonan).' perihal perpanjangan waktu penahanan guna kepentingan pemeriksaan yang belum selesai terhadap Tersangka:'),
                 null,
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -331,7 +333,7 @@ class Penetapan extends CI_Controller {
             $table->addCell(1000);
             $table->addCell(2500)->addText('Tempat, Tgl Lahir');
             $table->addCell(250)->addText(':');
-            $table->addCell(7000)->addText($dataTersangka->tempatlahir.', '.$dataTersangka->tgllahir);
+            $table->addCell(7000)->addText($dataTersangka->tempatlahir.', '.date_indo_text($dataTersangka->tgllahir));
             $table->addRow();
             $table->addCell(1000);
             $table->addCell(2500)->addText('Umur');
@@ -435,7 +437,9 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t\t\t\t\t".'Ditetapkan Di Kupang'),
+            $section->addText();
+            
+            $section->addText(htmlspecialchars("\t\t\t\t\t".'Ditetapkan di Kupang'),
                 null,
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
