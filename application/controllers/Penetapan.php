@@ -282,7 +282,7 @@ class Penetapan extends CI_Controller {
                 'P E N E T A P A N',
                 array('color' => '000000', 'bold' => true),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'center'
                 )
             );
@@ -292,7 +292,7 @@ class Penetapan extends CI_Controller {
                 'Nomor: '.$dataPenetapan->nomorpenetapan,
                 array('bold' => true),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'center'
                 )
             );
@@ -301,14 +301,14 @@ class Penetapan extends CI_Controller {
                 'DEMI KEADILAN BERDASARKAN KETUHANAN YANG MAHA ESA',
                 array('bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'center'
                 )
             );
 
             $section->addText(htmlspecialchars("\t".$pejabatRole.' Pengadilan Negeri Kupang Kelas 1A'), null, 
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'left'
                 )
             );
@@ -316,7 +316,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Telah membaca surat dari Penyidik '. $dataPenetapan->namainstansi. ' Nomor '.$dataPenetapan->nomorpermohonan .' tanggal '.date_indo_text($dataPenetapan->tglpermohonan).' perpanjangan waktu penahanan guna kepentingan pemeriksaan yang belum selesai terhadap Tersangka:'),
                 null,
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -372,7 +372,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Membaca permintaan perpanjangan penahanan terdakwa tersebut.'),
                 array('color' => '000000', 'bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -380,7 +380,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa Tersangka disangka melakukan tindak pidana “'.$dataPenetapan->jenisperkara.'”, sebagaimana dimaksud dalam '.$dataPenetapan->pasalperkara.'.'),
                 array('color' => '000000', 'bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -388,7 +388,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa waktu penahanan Tersangka tersebut berdasarkan perintah penahanan yang dikeluarkan '.$dataPenetapan->instansipenahanterakhir.', akan berakhir pada tanggal '.date_indo_text($dataPenetapan->tglpenahananhabis)).'.',
                 array('color' => '000000', 'bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -396,7 +396,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa dari surat/laporan perkara tersebut terdapat cukup alasan untuk mengabulkan permohonan tersebut.'),
                 array('color' => '000000', 'bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -404,7 +404,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t" .'Mengingat '.$dataPenetapan->pasalrujukantext.'.'),
               null,
               array(
-                'space' => array('before' => 0, 'after' => 120), 
+                'space' => array('before' => 0, 'after' => 60), 
                 'align' => 'both'
               )
             );
@@ -414,7 +414,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars('M E N E T A P K A N'),
                 array('color' => '000000', 'bold' => true),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'center'
                 )
             );
@@ -422,7 +422,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t".'Mengabulkan permintaan dari '.$dataPenetapan->namainstansi.' untuk memperpanjang waktu penahanan Tersangka '. $dataPenetapan->namatersangka .' selama 30 (tiga puluh) hari terhitung sejak tanggal '.date_indo_text($tglMulaiPerpanjangan).' sampai dengan tanggal '.date_indo_text($tglAkhirPerpanjangan).'.'),
                 null,
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -430,7 +430,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t".'Memerintahkan agar kepada Tersangka dan keluarganya selekas mungkin diberikan sehelai turunan penetapan ini.'),
                 null,
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'both'
                 )
             );
@@ -438,7 +438,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t\t\t\t\t".'Ditetapkan Di Kupang'),
                 null,
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'left'
                 )
             );
@@ -446,7 +446,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t\t\t\t\t".'Pada tanggal, '.date_indo_text(date('Y-m-d'))),
                 null,
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'left'
                 )
             );
@@ -454,7 +454,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t\t\t\t\t".$pejabatRole.' Pengadilan Negeri Kupang Kelas 1A'),
                 array('color' => '000000', 'bold' => false),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'left'
                 )
             );
@@ -465,7 +465,7 @@ class Penetapan extends CI_Controller {
             $section->addText(htmlspecialchars("\t\t\t\t\t".$pejabatName),
                 array('color' => '000000', 'bold' => true),
                 array(
-                    'space' => array('before' => 0, 'after' => 120), 
+                    'space' => array('before' => 0, 'after' => 60), 
                     'align' => 'left'
                 )
             );

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2021 at 07:42 AM
+-- Generation Time: Oct 22, 2021 at 07:57 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -79,6 +79,13 @@ CREATE TABLE `penetapan` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `penetapan`
+--
+
+INSERT INTO `penetapan` (`id`, `nomorpenetapan`, `counter`, `tglpermohonan`, `nomorpermohonan`, `jenisperkara`, `pasalperkara`, `tglpenahananhabis`, `instansipenahanterakhir`, `perpanjangan`, `pasalrujukan`, `idtersangka`, `idinstansi`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, '70/Pen.Pid/2021/PN Kpg', 70, '2021-10-21', 'B/2070/X/2021/Ditreskrimum', 'Persetubuhan Anak', 'Pasal 76D jo. Pasal 81 Ayat (3) UU RI No. 17 Tahun 2016 tentang Penetapan Peraturan Pemerintah Pengganti UU No. 1 Tahun 2016 tentang Perubahan Kedua Atas UU No. 23 Tahun 2002 tentang Perlindungan Anak', '2022-11-05', 1, 30, '2', 1, 3, 1, '2021-10-22 13:51:00', '2021-10-22 13:51:00');
+
 -- --------------------------------------------------------
 
 --
@@ -101,6 +108,13 @@ CREATE TABLE `tersangka` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tersangka`
+--
+
+INSERT INTO `tersangka` (`id`, `nama`, `tempatlahir`, `tgllahir`, `jeniskelamin`, `suku`, `kebangsaan`, `pekerjaan`, `alamat`, `agama`, `pendidikan`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Imanuel Radja Alias Muhammad Harryz Radja', 'Kupang', '1983-12-25', 1, 'Sabu', 'Indonesia', 'Pegawai Honorer', 'RT. 010 / RW. 003, Kel. Nunbaun-Sabu, Kec. Alak, Kota Kupang', 3, 3, 1, '2021-10-22 13:49:00', '2021-10-22 13:49:00');
 
 -- --------------------------------------------------------
 
@@ -171,13 +185,13 @@ ALTER TABLE `instansi`
 -- AUTO_INCREMENT for table `penetapan`
 --
 ALTER TABLE `penetapan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tersangka`
 --
 ALTER TABLE `tersangka`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
