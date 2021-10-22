@@ -47,4 +47,12 @@ class User_M extends CI_Model {
         $this->db->where('userid', $id);
         $this->db->delete($this->table);
     }
+
+    public function getPejabatByRole($param){
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('role', $param);
+        $query = $this->db->get();
+        return $query;
+    }
 }

@@ -11,8 +11,11 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-        isLogin();
-        $this->load->view('auth/login-page');
+        // isLogin();
+        $data = array(
+            'title' => 'Login Page'
+        );
+        $this->load->view('auth/login-page', $data);
     }
 
     public function login(){
@@ -26,24 +29,18 @@ class Auth extends CI_Controller {
                 $session_data = array(
                     "userid" => $data->userid,
                     "username"=> $data->username,
-                    "namalengkap"=> $data->namalengkap,
-                    "foto"=> $data->foto,
-                    "role"=> $data->role,
-                    "nohp"=> $data->nohp
+                    "nama"=> $data->nama,
+                    "image"=> $data->image,
+                    "role"=> $data->role
                 );
 
                 $this->session->set_userdata($session_data);
 
-                if ($data->role == 1){
-                    redirect('dashboard/dashboardAdmin');
-                } else {
-                    redirect('dashboard');
-                }
+                $this->session->set_flashdata('notif_success', 'Berhasil Login');
+                redirect('dashboard/index');
             } else {
-                echo "<script>
-                    alert('Maaf username dan password anda salah');
-                    window.location = '".site_url('auth')."';
-                </script>";
+                $this->session->set_flashdata('notif_failed', 'Gagal Login');
+                redirect('auth/index');
             }
         }
     }
@@ -51,6 +48,7 @@ class Auth extends CI_Controller {
 
     public function logout(){
         $this->session->sess_destroy();
+        $this->session->set_flashdata('notif_success', 'Anda Telah Logout');
         redirect('auth');
     }
 

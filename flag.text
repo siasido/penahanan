@@ -1,0 +1,31 @@
+#users :
+1 : super admin
+2 : ketua
+3 : wakil ketua
+4 : staff
+
+
+1 - Budha
+2 - Hindu
+3 - Islam
+4 - Katolik
+5 - Konghucu
+6 - Kristen Protestan
+7 - lain-lain
+
+#jeniskelamin :
+1 = laki-laki
+2 = perempuan
+
+#pendidikan
+1 : SD
+2 : SLTP
+3 : SLTA
+4 : Diploma I
+5 : Diploma III
+6 : Diploma IV
+7 : Sarjana (S1)
+8 : Magister (S2)
+9 : Doktoral (S3)
+10 : Lain - lain
+

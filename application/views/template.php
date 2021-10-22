@@ -12,8 +12,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/images/log.png">
-    <title>Surya Motor App</title>
+    <link rel="icon" type="image/png" sizes="20x21" href="<?php echo base_url()?>assets/images/logo-pn-removebg.png">
+    <title>SIPENADIK-PN Kupang | <?=$page_title?></title>
 
     
     
@@ -66,16 +66,18 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
+                
+
                     <a class="navbar-brand" href="index.html">
                         <!-- Logo icon -->
                         <b class="logo-icon">
-                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                            <!-- Dark Logo icon -->
-                            <img src="<?php echo base_url()?>assets/images/log.png" style="height: 60px; width: 85px;" alt="homepage" class="light-logo" />
+                            <img src="<?php echo base_url()?>assets/images/logo-pn-removebg.png" alt="SIP3T" style="width: 45px; height: 50px;" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        
+                        <span class="logo-text">
+                            SIPENADIK-PN Kupang
+                        </span>
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->
@@ -182,7 +184,7 @@
                     <ul id="sidebarnav">
 
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'dashboard' ? 'active' : null?>" href="<?=site_url('dashboard/dashboardAdmin')?>" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'dashboard' ? 'active' : null?>" href="<?=site_url('dashboard/index')?>" aria-expanded="false">
                                 <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Dashboard</span>
                             </a>
                         </li>
@@ -192,77 +194,32 @@
                         </li>
 
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'company' ? 'active' : null?>" href="<?=site_url('company/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Profil Bengkel</span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'instansi' ? 'active' : null?>" href="<?=site_url('instansi/index')?>" aria-expanded="false">
+                                <i class="fas fa-university"></i><span class="hide-menu">Instansi</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'rekening' ? 'active' : null?>" href="<?=site_url('rekening/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-calendar-text"></i><span class="hide-menu">Rekening</span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'tersangka' ? 'active' : null?>" href="<?=site_url('tersangka/index')?>" aria-expanded="false">
+                            <i class="fas fa-user-secret"></i></i><span class="hide-menu">Tersangka</span>
                             </a>
                         </li>
 
                         <li class="sidebar-item"> 
                             <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'supplier' ? 'active' : null?>" href="<?=site_url('supplier/index')?>" aria-expanded="false">
-                                <i class="mr-2 mdi mdi-package"></i><span class="hide-menu">Supplier</span>
+                            <i class="far fa-user"></i><span class="hide-menu">Users</span>
                             </a>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow waves-effect waves-dark"
-                                href="javascript:void(0)" aria-expanded="false"><i
-                                    class="mdi mdi-bookmark-plus-outline"></i><span class="hide-menu">Products </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('unit')?>" class="sidebar-link <?=$active_menu == 'unit' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Units</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('kategori')?>" class="sidebar-link <?=$active_menu == 'kategori' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Kategori</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('barang')?>" class="sidebar-link <?=$active_menu == 'barang' ? 'active' : null?>">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Products</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Transaksi</span>
+                            <span class="hide-menu">Products</span>
                         </li>
                         <li class="sidebar-item <?=$active_menu == 'order' ? 'active' : null?>"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('orders/allorder')?>" aria-expanded="false">
-                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Sales</span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('penetapan/index')?>" aria-expanded="false">
+                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Penetapan</span>
                             </a>
                         </li>
-                        <li class="sidebar-item "> <a class="sidebar-link has-arrow waves-effect waves-dark <?=$active_menu == 'stock' ? 'active' : null?>"
-                                href="javascript:void(0)" aria-expanded="false"><i
-                                    class="mdi mdi-bookmark-plus-outline"></i><span class="hide-menu">Stock </span></a>
-                            <ul aria-expanded="false" class="collapse  first-level">
-                                <li class="sidebar-item ">
-                                    <a href="<?=site_url('stock/inStockList')?>" class="sidebar-link ">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Order Ke Supplier</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="<?=site_url('stock/outStockList')?>" class="sidebar-link">
-                                        <i class="mdi mdi-book-multiple"></i><span class="hide-menu">Out Stock</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Report</span>
-                        </li>
-                        <li class="sidebar-item <?=$active_menu == 'report' ? 'active' : null?>"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'report' ? 'active' : null?>" href="<?=site_url('orders/report')?>" aria-expanded="false">
-                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Laporan Bulanan</span>
-                            </a>
-                        </li>
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

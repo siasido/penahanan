@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/assets/images/favicon.png">
-    <title>Surya Mandiri Motor</title>
+    <title>Penahanan | <?=$title?></title>
 	<link rel="canonical" href="<?php echo base_url()?>assets/images/log.png" />
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/dist/css/style.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@
         <!-- ============================================================== -->
         <!-- Login box.scss -->
         <!-- ============================================================== -->
-        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?=base_url()?>/assets/src/assets/images/bengkel.jpg) no-repeat center center; background-size: cover;">
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(<?=base_url()?>/assets/images/pn-kupang-kantor-2.jpg) center center; background-repeat: repeat; background-size: cover;">
             <div class="auth-box on-sidebar p-4 bg-white m-0">
                 <div id="loginform">
                     <div class="logo text-center">
@@ -50,6 +50,25 @@
                     </div>
                     <!-- Form -->
                     <div class="row">
+
+                        <?php if ($this->session->flashdata('notif_success')) { ?>
+                            <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+                                <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Success - </strong><?= $this->session->flashdata('notif_success') ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if ($this->session->flashdata('notif_failed')) { ?>
+                            <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                <button type="button" class="close ml-auto" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>Error - </strong> <?= $this->session->flashdata('notif_failed') ?>
+                            </div>
+                        <?php } ?>
+
                         <div class="col-12">
                             <form class="form-horizontal mt-3 form-material" id="loginform" method="post" action="<?=site_url('auth/login')?>">
                                 <div class="form-group mb-3">
