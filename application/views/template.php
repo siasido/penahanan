@@ -205,11 +205,13 @@
                             </a>
                         </li>
 
+                        <?php if($this->session->userdata('role') == 1) { ?>
                         <li class="sidebar-item"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'supplier' ? 'active' : null?>" href="<?=site_url('supplier/index')?>" aria-expanded="false">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'supplier' ? 'active' : null?>" href="<?=site_url('users/index')?>" aria-expanded="false">
                             <i class="far fa-user"></i><span class="hide-menu">Users</span>
                             </a>
                         </li>
+                        <?php } ?>
 
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">Products</span>

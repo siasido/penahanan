@@ -21,6 +21,7 @@ class Penetapan extends CI_Controller {
     }
 
 	public function index(){
+        isLogout();
         $data = array(
             'active_menu' => 'penetapan',
             'page_title' => 'penetapan',
@@ -58,6 +59,7 @@ class Penetapan extends CI_Controller {
 
     
     public function add(){
+        isLogout();
         $data = array(
             'active_menu' => 'penetapan',
             'page_title' => 'penetapan',
@@ -69,24 +71,31 @@ class Penetapan extends CI_Controller {
     }
     
     public function edit($id){
+        isLogout();
         $id = decode_url($id);
 
         $data = array(
             'active_menu' => 'penetapan',
             'page_title' => 'penetapan',
-            'data' => $this->penetapan_model->get($id)->row()
+            'row' => $this->penetapan_model->get($id)->row(),
+            'data_instansi' => $this->getInstansiDropdown(),
+            'data_tersangka' => $this->getTersangkaDropdown(),
         );
 		$this->load->view('template', $data);
         $this->load->view('penetapan/penetapan-form-edit', $data);
 	}
 
     public function detail($id){
+        isLogout();
         $id = decode_url($id);
+        
+        // echo json_encode($this->penetapan_model->get($id)->row());
+        // exit();
 
         $data = array(
             'active_menu' => 'penetapan',
             'page_title' => 'penetapan',
-            'data' => $this->penetapan_model->get($id)->row()
+            'data' => $this->penetapan_model->get($id)->row(),
         );
 		$this->load->view('template', $data);
         $this->load->view('penetapan/penetapan-form-detail', $data);
@@ -95,8 +104,6 @@ class Penetapan extends CI_Controller {
     public function submit(){
         $post = $this->input->post(null, true);
 
-        // echo json_encode($post);
-        // exit();
 
         if (isset($post['submit'])){
             $this->form_validation->set_rules('tglpermohonan', 'Tanggal Permohonan', 'trim|required|max_length[10]');
@@ -127,10 +134,6 @@ class Penetapan extends CI_Controller {
                 $currentYear = date('Y');
                 $queryCounter = $this->penetapan_model->getNomorPenetapanTerakhir($currentYear)->row()->nomorterakhir;
                 $noPenetapan =  ($queryCounter ?? 0) + 1;
-                // var_dump($noPenetapan);
-
-                // echo($this->db->last_query());
-                // exit();
 
                 $noPenetapanBaru = $noPenetapan.'/Pen.Pid/2021/PN Kpg';
 
@@ -167,15 +170,18 @@ class Penetapan extends CI_Controller {
     public function update(){
         $post = $this->input->post(null, true);
 
+        $id = decode_url($post['id']);
+
         if (isset($post['submit'])){
-            $this->form_validation->set_rules('nama', 'Nama penetapan', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('tempatlahir', 'Tempat Lahir', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('tgllahir', 'Tanggal Lahir', 'trim|required|max_length[10]');
-            $this->form_validation->set_rules('jeniskelamin', 'Jenis Kelamin', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('kebangsaan', 'Kebangsaan', 'trim|required|max_length[50]');
-            $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-            $this->form_validation->set_rules('agama', 'Agama', 'trim|required|numeric');
-            $this->form_validation->set_rules('pendidikan', 'Pendidikan', 'trim|required|numeric');
+            $this->form_validation->set_rules('tglpermohonan', 'Tanggal Permohonan', 'trim|required|max_length[10]');
+            $this->form_validation->set_rules('idinstansi', 'Instansi Pemohon', 'trim|required|numeric');
+            $this->form_validation->set_rules('nomorpermohonan', 'No. Permohonan', 'trim|required');
+            $this->form_validation->set_rules('idtersangka', 'Tersangka', 'trim|required|numeric');
+            $this->form_validation->set_rules('jenisperkara', 'Jenis Perkara', 'trim|required');
+            $this->form_validation->set_rules('pasalperkara', 'Pasal Perkara', 'trim|required');
+            $this->form_validation->set_rules('instansipenahanterakhir', 'Instansi Penahan Terakhir', 'trim|required|numeric');
+            $this->form_validation->set_rules('tglpenahananhabis', 'Tanggal Penahanan Berakhir', 'trim|required|max_length[10]');
+            $this->form_validation->set_rules('pasalrujukan', 'Pasal Rujukan', 'trim|required|numeric');
 
             $this->form_validation->set_message('required', '{field} masih kosong, silahkan isi.');
             $this->form_validation->set_message('min_length', '{field} minimal {param} karakter.');
@@ -186,26 +192,28 @@ class Penetapan extends CI_Controller {
 				$data = array(
                     'active_menu' => 'penetapan',
                     'page_title' => 'penetapan',
-                    'data' => $this->penetapan_model->get($post['id'])->row()
+                    'row' => $this->penetapan_model->get($id)->row(),
+                    'data_instansi' => $this->getInstansiDropdown(),
+                    'data_tersangka' => $this->getTersangkaDropdown(),
                 );
                 $this->load->view('template', $data);
                 $this->load->view('penetapan/penetapan-form-edit', $data);
 			} else {
                 $postData = array(
-                    'nama' => $post['nama'],
-                    'tempatlahir' => $post['tempatlahir'],
-                    'tgllahir' => $post['tgllahir'],
-                    'jeniskelamin' => $post['jeniskelamin'],
-                    'suku' => $post['suku'],
-                    'kebangsaan' => $post['kebangsaan'],
-                    'pekerjaan' => $post['pekerjaan'],
-                    'alamat' => $post['alamat'],
-                    'agama' => $post['agama'],
-                    'pendidikan' => $post['pendidikan'],
+                    'tglpermohonan' => $post['tglpermohonan'],
+                    'idinstansi' => $post['idinstansi'],
+                    'nomorpermohonan' => $post['nomorpermohonan'],
+                    'idtersangka' => $post['idtersangka'],
+                    'jenisperkara' => $post['jenisperkara'],
+                    'pasalperkara' => $post['pasalperkara'],
+                    'instansipenahanterakhir' => $post['instansipenahanterakhir'],
+                    'tglpenahananhabis' => $post['tglpenahananhabis'],
+                    'pasalrujukan' => $post['pasalrujukan'],
+                    'perpanjangan' => $post['perpanjangan'],
                     'updated_at' => date("Y-m-d H:i:S"),
                     'is_active' => 1
                 );
-                $this->penetapan_model->update($postData, $post['id']);
+                $this->penetapan_model->update($postData, $id);
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
                     redirect('penetapan');
@@ -387,7 +395,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa waktu penahanan Tersangka tersebut berdasarkan perintah penahanan yang dikeluarkan '.$dataPenetapan->instansipenahanterakhir.', akan berakhir pada tanggal '.date_indo_text($dataPenetapan->tglpenahananhabis)).'.',
+            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa waktu penahanan Tersangka tersebut berdasarkan perintah penahanan yang dikeluarkan '.$dataPenetapan->instansipenahanterakhirtext.', akan berakhir pada tanggal '.date_indo_text($dataPenetapan->tglpenahananhabis)).'.',
                 array('color' => '000000', 'bold' => false),
                 array(
                     'space' => array('before' => 0, 'after' => 60), 

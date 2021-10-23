@@ -6,8 +6,8 @@ class Penetapan_M extends CI_Model {
     protected $table = 'penetapan';
     
     public function get($id = null){
-        $this->db->select('a.*, b.nama as namatersangka, c.nama as namainstansi, d.nama as instansipenahanterakhir,
-                    (CASE
+        $this->db->select('a.*, b.nama as namatersangka, c.nama as namainstansi, d.nama as instansipenahanterakhirtext,
+                (CASE
                     WHEN pasalrujukan = 1 THEN "Pasal 25 Ayat (2) KUHAP"
                     WHEN pasalrujukan = 2 THEN "Pasal 29 Ayat (1,2,3) KUHAP"
                     ELSE "Pasal 29 Ayat (1,2,3) KUHAP"

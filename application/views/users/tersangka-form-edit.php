@@ -8,10 +8,10 @@
             <!-- Bread crumb and right sidebar toggle -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">Penetapan Penahanan</h3>
+                    <h3 class="text-themecolor mb-0">Profil Instansi</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active">Ubah Penetapan Penahanan</li>
+                        <li class="breadcrumb-item active">Edit Instansi</li>
                     </ol>
                 </div>
             </div>
@@ -19,62 +19,32 @@
 
 
                         <!-- Container fluid  -->
-            <div class="container-fluid">
+                        <div class="container-fluid">
                 <div class="col-md-12 col-lg-11">
                     <div class="card card-body">
-                        <h3 class="mb-0">Ubah Penetapan Penahanan</h3>
-                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk mengubah penetapan penahanan:</p>
+                        <h3 class="mb-0">Edit Tersangka</h3>
+                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk mengubah data tersangka:</p>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
-                                <form action="<?=site_url('penetapan/update')?>" method="post">
+                                <form action="<?=site_url('tersangka/update')?>" method="post">
                                     <div class="row">
-                                        <input type="hidden" name="id" value="<?=(encode_url($this->input->post('id') ?? $row->id))?>">
+                                        <input type="hidden" name="id" value="<?=($this->input->post('id') ?? $data->id)?>">
                                         
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="tglpermohonan">Tanggal Permohonan</label>
-                                                <input type="text" class="form-control" name="tglpermohonan" value=<?=($this->input->post('tglpermohonan') ?? $row->tglpermohonan)?> id="tglpermohonan">
+                                                <label for="nama">Nama</label>
+                                                <input type="text" name="nama" class="form-control" id="nama" value="<?=($this->input->post('nama') ?? $data->nama)?>">
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('tglpermohonan'); ?></small>
+                                                    <small><?php echo form_error('nama'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="instansi">Instansi Pemohon</label>
-                                                <select class="select2 form-control custom-select <?=form_error('idinstansi') ? 'is-invalid' : null ?>" name="idinstansi" style="width: 100%; height:36px;" required>
-                                                <?php $selectedInstansiPemohon = ($this->input->post('idinstansi') ?? $row->idinstansi)?>
-                                                <?php foreach ($data_instansi as $key => $val) {?>
-                                                    <option value="<?=$key?>" <?=($key == $selectedInstansiPemohon ? 'selected' : null); ?> > <?=$val['namainstansi']?></option>
-                                                <?php } ?>
-                                                </select>
+                                                <label for="tempatlahir">Tempat Lahir</label>
+                                                <input type="text" name="tempatlahir" class="form-control" id="tempatlahir" value="<?=($this->input->post('tempatlahir') ?? $data->tempatlahir)?>">
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('idinstansi'); ?></small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="nomorpermohonan">No. Permohonan</label>
-                                                <input type="text" name="nomorpermohonan" class="form-control" id="nomorpermohonan" value="<?=$this->input->post('nomorpermohonan') ?? $row->nomorpermohonan?>">
-                                                <div class="text-danger">
-                                                    <small><?php echo form_error('nomorpermohonan'); ?></small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="idtersangka">Nama Tersangka</label>
-                                                <select class="select2 form-control custom-select <?=form_error('idtersangka') ? 'is-invalid' : null ?>" id="idtersangka" name="idtersangka" style="width: 100%; height:36px;" required>
-                                                <?php $selectedTersangka = ($this->input->post('idtersangka') ?? $row->idtersangka)?>
-                                                <?php foreach ($data_tersangka as $key => $val) {?>
-                                                    <option value="<?=$key?>" <?=($key == $selectedTersangka ? 'selected' : null); ?>> <?=$val['namatersangka']?></option>
-                                                <?php } ?>
-                                                </select>
-                                                <div class="text-danger">
-                                                    <small><?php echo form_error('idtersangka'); ?></small>
+                                                    <small><?php echo form_error('tempatlahir'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,73 +53,109 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="jenisperkara">Jenis Perkara</label>
-                                                <textarea class="form-control" id="jenisperkara" name="jenisperkara" rows="3" ><?=$this->input->post('jenisperkara') ?? $row->jenisperkara?></textarea>
-                                            </div>
-                                            <div class="text-danger">
-                                                <small><?php echo form_error('jenisperkara'); ?></small>
+                                                <label for="tgllahir">Tanggal Lahir</label>
+                                                <input type="text" class="form-control" name="tgllahir" id="tgllahir" value=<?=($this->input->post('tgllahir') ?? $data->tgllahir)?>>
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('tgllahir'); ?></small>
+                                                </div>
                                             </div>
                                         </div>
-
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="pasalperkara">Pasal Perkara</label>
-                                                <textarea class="form-control" id="pasalperkara" name="pasalperkara" rows="3" ><?=$this->input->post('pasalperkara') ?? $row->pasalperkara?></textarea>
+                                                <label for="jeniskelamin">Jenis Kelamin</label>
+                                                <select class="select2 form-control custom-select <?=form_error('jeniskelamin') ? 'is-invalid' : null ?>" name="jeniskelamin" style="width: 100%; height:36px;" required>
+                                                    <option value="">Pilih Jenis Kelamin</option>
+                                                    <?php $selectedGender = ($this->input->post('jeniskelamin') ?? $data->jeniskelamin)?>
+                                                    <option value="1" <?=($selectedGender == 1 ? 'selected' : null) ?>> Laki-laki</option>
+                                                    <option value="2" <?=($selectedGender == 2 ? 'selected' : null) ?>> Perempuan</option>
+                                                </select>
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('jeniskelamin'); ?></small>
+                                                </div>
                                             </div>
-                                            <div class="text-danger">
-                                                <small><?php echo form_error('pasalperkara'); ?></small>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <div class="form-group">
+                                                <label for="suku">Suku</label>
+                                                <input type="text" name="suku" class="form-control" id="suku" value="<?=($this->input->post('suku') ?? $data->suku)?>">
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('suku'); ?></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <div class="form-group">
+                                                <label for="kebangsaan">Kebangsaan</label>
+                                                <input type="text" name="kebangsaan" class="form-control" id="kebangsaan" value="<?=($this->input->post('kebangsaan') ?? $data->kebangsaan)?>">
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('kebangsaan'); ?></small>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="instansi">Instansi Penetap Penahanan Terakhir</label>
-                                                <select class="select2 form-control custom-select <?=form_error('instansipenahanterakhir') ? 'is-invalid' : null ?>" name="instansipenahanterakhir" style="width: 100%; height:36px;" required>
-                                                <?php $selectedInstansiPenahan = ($this->input->post('instansipenahanterakhir') ?? $row->instansipenahanterakhir)?>
-                                                <?php foreach ($data_instansi as $key => $val) {?>
-                                                    <option value="<?=$key?>" <?=($key == $selectedInstansiPenahan ? 'selected' : null); ?>> <?=$val['namainstansi']?></option>
-                                                <?php } ?>
-                                                </select>
+                                                <label for="pekerjaan">Pekerjaan</label>
+                                                <input type="text" name="pekerjaan" class="form-control" id="pekerjaan" value="<?=($this->input->post('pekerjaan') ?? $data->pekerjaan)?>">
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('instansipenahanterakhir'); ?></small>
+                                                    <small><?php echo form_error('pekerjaan'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="tglpenahananhabis">Tanggal Penahanan Berakhir</label>
-                                                <input type="text" class="form-control" name="tglpenahananhabis" id="tglpenahananhabis" value="<?=$this->input->post('tglpenahananhabis') ?? $row->tglpenahananhabis?>">
+                                                <label for="pendidikan">Pendidikan</label>
+                                                <select class="select2 form-control custom-select <?=form_error('pendidikan') ? 'is-invalid' : null ?>" name="pendidikan" style="width: 100%; height:36px;" required>
+                                                    <option value="">Pilih Pendidikan</option>
+                                                    <?php $selectedPendidikan = ($this->input->post('pendidikan') ?? $data->pendidikan)?>
+                                                    <option value="1" <?=($selectedPendidikan == 1 ? 'selected' : null) ?>>SD</option>
+                                                    <option value="2" <?=($selectedPendidikan == 2 ? 'selected' : null) ?>>SMP</option>
+                                                    <option value="3" <?=($selectedPendidikan == 3 ? 'selected' : null) ?>>SLTA</option>
+                                                    <option value="4" <?=($selectedPendidikan == 4 ? 'selected' : null) ?>>Diploma I (D1)</option>
+                                                    <option value="5" <?=($selectedPendidikan == 5 ? 'selected' : null) ?>>Diploma III (D3)</option>
+                                                    <option value="6" <?=($selectedPendidikan == 6 ? 'selected' : null) ?>>Diploma IV (D4)</option>
+                                                    <option value="7" <?=($selectedPendidikan == 7 ? 'selected' : null) ?>>Sarjana (S1)</option>
+                                                    <option value="8" <?=($selectedPendidikan == 8 ? 'selected' : null) ?>>Magister (S2)</option>
+                                                    <option value="9" <?=($selectedPendidikan == 9 ? 'selected' : null) ?>>Doktoral (S3)</option>
+                                                    <option value="10" <?=($selectedPendidikan == 10 ? 'selected' : null) ?>>Lain-lain</option>
+                                                </select>
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('tglpenahananhabis'); ?></small>
+                                                    <small><?php echo form_error('pendidikan'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="pasalrujukan">Pasal Rujukan</label>
-                                                <select class="select2 form-control custom-select <?=form_error('pasalrujukan') ? 'is-invalid' : null ?>" name="pasalrujukan" id="pasalrujukan" style="width: 100%; height:36px;" required>
-                                                    <?php $selectedPasalRujukan = ($this->input->post('pasalrujukan') ?? $row->pasalrujukan)?>
-                                                    <option value="">-Pilih Pasal Rujukan-</option>
-                                                    <option value="1" <?=(1 == $selectedPasalRujukan ? 'selected' : null); ?> data-lamapermintaanpenahanan="30">Pasal 25 Ayat (2) KUHAP </option>
-                                                    <option value="2" <?=(2 == $selectedPasalRujukan ? 'selected' : null); ?> data-lamapermintaanpenahanan="30">Pasal 29 Ayat (1,2 dan 3) KUHAP Tahap I</option>
-                                                    <option value="3" <?=(3 == $selectedPasalRujukan ? 'selected' : null); ?> data-lamapermintaanpenahanan="30">Pasal 29 Ayat (1,2 dan 3) KUHAP Tahap II</option>
+                                                <label for="agama">Agama</label>
+                                                <select class="select2 form-control custom-select <?=form_error('agama') ? 'is-invalid' : null ?>" name="agama" style="width: 100%; height:36px;" required>
+                                                    <option value="">Pilih Agama</option>
+                                                    <?php $selectedAgama = ($this->input->post('agama') ?? $data->agama)?>
+                                                    <option value="1" <?=($selectedAgama == 1 ? 'selected' : null) ?>>Budha</option>
+                                                    <option value="2" <?=($selectedAgama == 2 ? 'selected' : null) ?>>Hindu</option>
+                                                    <option value="3" <?=($selectedAgama == 3 ? 'selected' : null) ?>>Islam</option>
+                                                    <option value="4" <?=($selectedAgama == 4 ? 'selected' : null) ?>>Katolik</option>
+                                                    <option value="5" <?=($selectedAgama == 5 ? 'selected' : null) ?>>Konghucu</option>
+                                                    <option value="6" <?=($selectedAgama == 6 ? 'selected' : null) ?>>Kristen Protestan</option>
+                                                    <option value="7" <?=($selectedAgama == 7 ? 'selected' : null) ?>>Lain-lain</option>
                                                 </select>
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('pasalrujukan'); ?></small>
+                                                    <small><?php echo form_error('agama'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="perpanjangan">Permintaan Perpanjangan Penahanan (hari)</label>
-                                                <input type="text" name="perpanjangan" class="form-control" id="perpanjangan" value="<?=$this->input->post('perpanjangan') ?? $row->perpanjangan?>" readonly>
-                                                <div class="text-danger">
-                                                    <small><?php echo form_error('perpanjangan'); ?></small>
-                                                </div>
+                                                <label for="alamat">Alamat</label>
+                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" ><?=($this->input->post('alamat') ?? $data->alamat)?></textarea>
+                                            </div>
+                                            <div class="text-danger">
+                                                <small><?php echo form_error('alamat'); ?></small>
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +163,7 @@
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
                                                 <button type="submit" name="submit" class="btn btn-success waves-effect waves-light mr-2">Simpan</button>
-                                                <a href="<?=site_url('penetapan/index')?>" class="btn btn-inverse waves-effect waves-light">Batal</a>
+                                                <a href="<?=site_url('tersangka/index')?>" class="btn btn-inverse waves-effect waves-light">Batal</a>
                                             </div>
                                         </div>
                                     </div>
@@ -240,7 +246,6 @@
 
     <!-- RangePicker JS -->
     <script src="<?php echo base_url()?>assets/src/assets/libs/moment/moment.js"></script>
-    <script src="<?php echo base_url()?>assets/src/assets/libs/moment/moment-with-locales.js"></script>
     <script src="<?php echo base_url()?>assets/src/assets/libs/daterangepicker/daterangepicker.js"></script>
 
     <!-- Datetetimepicker JS -->
@@ -252,27 +257,11 @@
     <script>
         // moment.locale("id").format('L');
         // moment().format('MMMM Do YYYY, h:mm:ss a');
-        $('#tglpermohonan').bootstrapMaterialDatePicker({
+        $('#tgllahir').bootstrapMaterialDatePicker({
             time: false,
             format: 'YYYY-MM-DD',
             lang: 'id',
             maxDate : new Date()
-        });
-
-        $('#tglpenahananhabis').bootstrapMaterialDatePicker({
-            time: false,
-            format: 'YYYY-MM-DD',
-            lang: 'id',
-            // maxDate : new Date() 
-        });
-
-        $("#pasalrujukan").on("change", function (e) {
-            
-            let objectEvent = $('option:selected', this);
-            let lamahari = objectEvent.attr('data-lamapermintaanpenahanan');
-            console.log(lamahari);
-            // $("#perpanjangan").val();
-            $("#perpanjangan").val(lamahari);
         });
     </script>
 

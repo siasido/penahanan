@@ -11,7 +11,7 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-        // isLogin();
+        isLogin();
         $data = array(
             'title' => 'Login Page'
         );
@@ -27,7 +27,7 @@ class Auth extends CI_Controller {
                 // var_dump($data);
 
                 $session_data = array(
-                    "userid" => $data->userid,
+                    "id" => $data->id,
                     "username"=> $data->username,
                     "nama"=> $data->nama,
                     "image"=> $data->image,

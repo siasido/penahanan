@@ -8,10 +8,10 @@
             <!-- Bread crumb and right sidebar toggle -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">Penetapan Penahanan</h3>
+                    <h3 class="text-themecolor mb-0">Profil User</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active">Detail Penetapan</li>
+                        <li class="breadcrumb-item active">Tambah User</li>
                     </ol>
                 </div>
             </div>
@@ -22,36 +22,36 @@
             <div class="container-fluid">
                 <div class="col-md-12 col-lg-11">
                     <div class="card card-body">
-                        <h3 class="mb-0">Detail Penetapan Penahanan</h3>
-                        <!-- <p class="text-muted mb-4 font-13"></p> -->
+                        <h3 class="mb-0">Tambah User</h3>
+                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk menambah user:</p>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
-                                    <div class="row">                                        
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="tglpermohonan">Tanggal Permohonan</label>
-                                                <input type="text" class="form-control" name="tglpermohonan" id="tglpermohonan" value="<?=date_indo_text($data->tglpermohonan)?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="instansi">Instansi Pemohon</label>
-                                                <input type="text" class="form-control" value="<?=$data->namainstansi?>" readonly>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
+                                <form action="<?=site_url('users/submit')?>" method="post">
                                     <div class="row">
+                                        <input type="hidden" name="id">
+                                        
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="nomorpermohonan">No. Permohonan</label>
-                                                <input type="text" class="form-control" value="<?=$data->nomorpermohonan?>" readonly>
+                                                <label for="nama">Nama</label>
+                                                <input type="text" name="nama" class="form-control" id="nama" value="<?=$this->input->post('nama')?>">
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('nama'); ?></small>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="idtersangka">Nama Tersangka</label>
-                                                <input type="text" class="form-control" value="<?=$data->namatersangka?>" readonly>
+                                                <label for="role">Role</label>
+                                                <select class="select2 form-control custom-select <?=form_error('role') ? 'is-invalid' : null ?>" name="role" style="width: 100%; height:36px;" required>
+                                                    <option value="">Pilih Role</option>
+                                                    <option value="1" <?php echo set_select('role', 1)?>> Admin</option>
+                                                    <option value="2" <?php echo set_select('role', 2)?>> Ketua Pengadilan</option>
+                                                    <option value="3" <?php echo set_select('role', 3)?>> Wakil Ketua Pengadilan</option>
+                                                    <option value="4" <?php echo set_select('role', 4)?>> Staff</option>
+                                                </select>
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('role'); ?></small>
+                                                </div>
                                             </div>
                                         </div>
                                         
@@ -59,48 +59,19 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <label for="jenisperkara">Jenis Perkara</label>
-                                                <textarea class="form-control" id="jenisperkara" name="jenisperkara" rows="3" readonly><?=$data->jenisperkara?></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="pasalperkara">Pasal Perkara</label>
-                                                <textarea class="form-control" id="pasalperkara" name="pasalperkara" rows="3" readonly><?=$data->pasalperkara?></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="instansi">Instansi Penetap Penahanan Terakhir</label>
-                                                <input type="text" class="form-control" value="<?=$data->instansipenahanterakhir?>" readonly>
-                                                
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="tglpenahananhabis">Tanggal Penahanan Berakhir</label>
-                                                <input type="text" class="form-control" name="tglpenahananhabis" id="tglpenahananhabis" value="<?=date_indo_text($data->tglpenahananhabis)?>" readonly>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">   
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="pasalrujukan">Pasal Rujukan</label>
-                                                <input type="text" name="perpanjangan" class="form-control" id="perpanjangan" value="<?=$data->pasalrujukantext?>" readonly>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3 mb-md-0">
-                                            <div class="form-group">
-                                                <label for="perpanjangan">Permintaan Perpanjangan Penahanan (hari)</label>
-                                                <input type="text" name="perpanjangan" class="form-control" id="perpanjangan" value="<?=$data->perpanjangan?>" readonly>
+                                                <label for="username">username</label>
+                                                <input type="text" name="username" class="form-control" id="username" value="<?=$this->input->post('username')?>">
                                                 <div class="text-danger">
-                                                    <small><?php echo form_error('perpanjangan'); ?></small>
+                                                    <small><?php echo form_error('username'); ?></small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="password" name="password" class="form-control" id="password" value="<?=$this->input->post('password')?>">
+                                                <div class="text-danger">
+                                                    <small><?php echo form_error('password'); ?></small>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,11 +79,20 @@
                                     <div class="row">
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
-                                                <a href="<?=site_url('penetapan/index')?>" class="btn btn-inverse waves-effect waves-light">Kembali</a>
+                                                <label>Foto</label>
+                                                <input type="file" class="form-control" id="image" name="image" aria-describedby="fileHelp">
                                             </div>
                                         </div>
                                     </div>
-                                <!-- </form> -->
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3 mb-md-0">
+                                            <div class="form-group">
+                                                <button type="submit" name="submit" class="btn btn-success waves-effect waves-light mr-2">Simpan</button>
+                                                <a href="<?=site_url('users/index')?>" class="btn btn-inverse waves-effect waves-light">Batal</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -200,7 +180,16 @@
 
     <script src="<?php echo base_url () ?>assets/src/assets/extra-libs/toastr/dist/build/toastr.min.js"></script>
     <script src="<?php echo base_url () ?>assets/dist/js/custom.min.js"></script>
-   
+    <script>
+        // moment.locale("id").format('L');
+        // moment().format('MMMM Do YYYY, h:mm:ss a');
+        $('#tgllahir').bootstrapMaterialDatePicker({
+            time: false,
+            format: 'YYYY-MM-DD',
+            lang: 'id',
+            maxDate : new Date()
+        });
+    </script>
 
 </body>
 
