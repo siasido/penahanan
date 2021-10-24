@@ -1,9 +1,9 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Penetapan_M extends CI_Model {
+class Penahanan_M extends CI_Model {
 
-    protected $table = 'penetapan';
+    protected $table = 'penahanan';
     
     public function get($id = null){
         $this->db->select('a.*, b.nama as namatersangka, c.nama as namainstansi, d.nama as instansipenahanterakhirtext,
@@ -13,7 +13,7 @@ class Penetapan_M extends CI_Model {
                     ELSE "Pasal 29 Ayat (1,2,3) KUHAP"
                 END) as pasalrujukantext,
         ');
-        $this->db->from('penetapan a');
+        $this->db->from('penahanan a');
         $this->db->join('tersangka b', 'a.idtersangka = b.id', 'left');
         $this->db->join('instansi c', 'a.idinstansi = c.id', 'left');
         $this->db->join('instansi d', 'a.instansipenahanterakhir = d.id', 'left');
@@ -27,7 +27,7 @@ class Penetapan_M extends CI_Model {
 
     public function getNomorPenetapanTerakhir($param){
         $this->db->select('max(counter) as nomorterakhir');
-        $this->db->from('penetapan');
+        $this->db->from('penahanan');
         $this->db->where('YEAR(created_at)', $param);
         $this->db->where('is_active', 1);
         $query = $this->db->get();

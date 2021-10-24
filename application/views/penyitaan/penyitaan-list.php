@@ -8,10 +8,10 @@
             <!-- Bread crumb and right sidebar toggle -->
             <div class="row page-titles">
                 <div class="col-md-5 col-12 align-self-center">
-                    <h3 class="text-themecolor mb-0">User List</h3>
+                    <h3 class="text-themecolor mb-0">List Penetapan Izin/Persetujuan Sita</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active">Profil User</li>
+                        <li class="breadcrumb-item active">Penetapan Penyitaan</li>
                     </ol>
                 </div>
             </div>
@@ -43,50 +43,62 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Daftar Pengguna</h4>
+                                <h4 class="card-title">List Penetapan Izin/Persetujuan Sita</h4>
                                 <div class="text-right">
-                                    <?php if ($this->session->userdata('role') == 1 ) { ?>
-                                        <a href="<?=site_url('users/add')?>" class="btn btn-info">
-                                            Tambah Pengguna
+                                        <a href="<?=site_url('penyitaan/add')?>" class="btn btn-info">
+                                            Tambah Penetapan Izin/Persetujuan Sita
                                         </a>
-                                    <?php } ?>
                                 </div>
                                 
                                 <div class="table-responsive">
                                     <table id="file_export" class="table table-striped table-bordered display">
                                         <thead>
                                             <tr>
-                                                <th>Nama</th>
-                                                <th>Role</th>
-                                                <th>Username</th>
-                                                <th>Foto</th>
-                                                <th>Created At</th>
-                                                <th>Last Updated</th>
+                                                <th>Jenis Penyitaan</th>
+                                                <th>Nomor Penetapan</th>
+                                                <th>Instansi Pemohon</th>
+                                                <th>Nama Tersangka</th>
+                                                <th>Jenis Perkara</th>
+                                                <th>Barang yang disita</th>
+                                                <th>Disita dari</th>
+                                                <?php if ($this->session->userdata('role') == 1 ) { ?>
+                                                    <th>Created At</th>
+                                                    <th>Last Updated</th>
+                                                    
+                                                <?php } ?>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($data as $key => $value) { ?>
                                                 <tr>
-                                                <td><?=$value->nama?></td>
-                                                <td><?=$value->roletext?></td>
-                                                <td><?=$value->username?></td>
-                                                <td>
-                                                    <?php if ($value->image != null) { ?>
-                                                        <img class="" src="<?=base_url('uploads/users/'.$value->image)?>" width="50px"> 
-                                                    <?php } else { ?>
-                                                        <img class="" src="<?=base_url('assets/no_image.jpg')?>" width="50px"> 
-                                                    <?php } ?>
-                                                </td>
+                                                <td><?=$value->jenispenyitaantext?></td>
+                                                <td><?=$value->nomorpenetapan?></td>
+                                                <td><?=$value->namainstansi?></td>
+                                                <td><?=$value->namatersangka?></td>
+                                                <td><?=$value->jenisperkara?></td>
+                                                <td><span style="white-space: pre-line"><?=$value->deskripsipenyitaan?></span></td>
+                                                <td><?=$value->disitadari?></td>
+                                                <?php if ($this->session->userdata('role') == 1 ) { ?>
                                                 <td><?=datetime_indo($value->created_at)?></td>
                                                 <td><?=datetime_indo($value->updated_at)?></td>
+                                                <?php } ?>
                                                 <td>
-                                                    <a href="<?=site_url('users/edit/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="<?=site_url('penyitaan/detail/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-success"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Detil">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                    <button class="btn waves-effect waves-light btn-secondary" data-toggle="modal" data-target="#modal<?=$value->id?>" >
+                                                        <i class="fas fa-print"></i>
+                                                    </button>
+
+                                                    <a href="<?=site_url('penyitaan/edit/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href="<?=site_url('users/delete/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-danger"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
+                                                    <?php if ($this->session->userdata('role') == 1 ) { ?>
+                                                    <a href="<?=site_url('penyitaan/delete/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-danger"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                             <?php } ?>
@@ -101,6 +113,55 @@
                 </div>
 
             </div>
+
+            <?php foreach ($data as $key => $value) { ?>
+                <!-- sample modal content -->
+                <div id="modal<?=$value->id?>" class="modal fade" tabindex="-1" role="dialog"
+                    aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex align-items-center">
+                                <h4 class="modal-title" id="myModalLabel">Cetak Penetapan Izin/Persetujuan Sita</h4>
+                                <button type="button" class="close ml-auto" data-dismiss="modal"
+                                    aria-hidden="true">×</button>
+                            </div>
+                            
+                            <form action="<?=site_url('penyitaan/cetak')?>" method="post">
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-xs-12">
+                                        
+                                            <div class="row">
+                                                <input type="hidden" name="id" value="<?=$value->id?>">
+                                                <div class="col-md-12 mb-12">
+                                                    <div class="form-group">
+                                                        <label for="roleuser">Pejabat Pembuat Penetapan</label>
+                                                        <select class="select2 form-control custom-select <?=form_error('roleuser') ? 'is-invalid' : null ?>" name="roleuser" style="width: 100%; height:36px;" required>
+                                                            <option value="">-Pilih Pejabat-</option>
+                                                            <option value="2" <?php echo set_select('roleuser', 2)?>>Ketua Pengadilan</option>
+                                                            <option value="3" <?php echo set_select('roleuser', 3)?>>Wakil Ketua Pengadilan</option>
+                                                        </select>
+                                                        <div class="text-danger">
+                                                            <small><?php echo form_error('roleuser'); ?></small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light"
+                                    data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Cetak Penetapan</button>
+                            </div>
+                            </form>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+            <?php }?>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

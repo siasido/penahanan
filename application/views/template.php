@@ -118,8 +118,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <?php if ($this->session->userdata('foto') != null) { ?>
-                                    <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" width="30" class="profile-pic rounded-circle"> 
+                                <?php if ($this->session->userdata('image') != null) { ?>
+                                    <img src="<?=base_url('uploads/users/'.$this->session->userdata('image'))?>" width="30" class="profile-pic rounded-circle"> 
                                 <?php } else { ?>
                                     <img src="<?=base_url('assets/no_image.jpg')?>"  width="30" class="profile-pic rounded-circle" > 
                                 <?php } ?>
@@ -129,8 +129,8 @@
                                     <li>
                                         <div class="dw-user-box p-3 d-flex">
                                             <div class="u-img">
-                                                    <?php if ($this->session->userdata('foto') != null) { ?>
-                                                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" class="rounded" width="80"> 
+                                                    <?php if ($this->session->userdata('image') != null) { ?>
+                                                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('image'))?>" class="rounded" width="80"> 
                                                     <?php } else { ?>
                                                         <img src="<?=base_url('assets/no_image.jpg')?>" class="rounded" width="80"> 
                                                     <?php } ?>
@@ -138,7 +138,7 @@
                                             <div class="u-text ml-2">
                                                 <h4 class="mb-0"><?php echo $this->session->userdata('username')?></h4>
                                                 <p class="text-muted mb-1 font-14"><a href="#" class="__cf_email__" data-cfemail=""><?php echo $this->session->userdata('emailPsikolog')?></a></p>
-                                                <a href="<?=site_url('users/myprofile')?>" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
+                                                <a href="#" class="btn btn-rounded btn-danger btn-sm text-white d-inline-block">View
                                                     Profile</a>
                                             </div>
                                         </div>
@@ -167,8 +167,8 @@
                 <div class="user-profile position-relative" style="background: url(<?php echo base_url()?>assets/src/assets/images/background/user-info.jpg) no-repeat;">
                     <!-- User profile image -->
                     <div class="profile-img">
-                    <?php if ($this->session->userdata('foto') != null) { ?>
-                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('foto'))?>" class="rounded w-100"> 
+                    <?php if ($this->session->userdata('image') != null) { ?>
+                        <img src="<?=base_url('uploads/users/'.$this->session->userdata('image'))?>" class="rounded w-100"> 
                     <?php } else { ?>
                         <img src="<?=base_url('assets/no_image.jpg')?>" class="rounded" width="80"> 
                     <?php } ?>
@@ -214,11 +214,16 @@
                         <?php } ?>
 
                         <li class="nav-small-cap"><i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Products</span>
+                            <span class="hide-menu">Penetapan</span>
                         </li>
                         <li class="sidebar-item <?=$active_menu == 'order' ? 'active' : null?>"> 
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('penetapan/index')?>" aria-expanded="false">
-                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Penetapan</span>
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('penahanan/index')?>" aria-expanded="false">
+                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Penahanan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item <?=$active_menu == 'order' ? 'active' : null?>"> 
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link <?=$active_menu == 'order' ? 'active' : null?>" href="<?=site_url('penyitaan/index')?>" aria-expanded="false">
+                                <i class="mdi mdi-content-paste"></i><span class="hide-menu">Penyitaan</span>
                             </a>
                         </li>
                         

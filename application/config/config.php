@@ -24,7 +24,7 @@ date_default_timezone_set('Asia/Kuala_Lumpur');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://127.0.0.1/penahanan/';
+$config['base_url'] = 'http://127.0.0.1:8080/penahanan/';
 
 /*
 |--------------------------------------------------------------------------

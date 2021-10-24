@@ -45,11 +45,9 @@
                             <div class="card-body">
                                 <h4 class="card-title">List Penetapan Penahanan</h4>
                                 <div class="text-right">
-                                    <?php if ($this->session->userdata('role') == 1 ) { ?>
-                                        <a href="<?=site_url('penetapan/add')?>" class="btn btn-info">
+                                        <a href="<?=site_url('penahanan/add')?>" class="btn btn-info">
                                             Tambah Penetapan Penahanan
                                         </a>
-                                    <?php } ?>
                                 </div>
                                 
                                 <div class="table-responsive">
@@ -83,21 +81,23 @@
                                                 <?php if ($this->session->userdata('role') == 1 ) { ?>
                                                 <td><?=datetime_indo($value->created_at)?></td>
                                                 <td><?=datetime_indo($value->updated_at)?></td>
+                                                <?php } ?>
                                                 <td>
-                                                    <a href="<?=site_url('penetapan/detail/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-success"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Detil">
+                                                    <a href="<?=site_url('penahanan/detail/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-success"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Detil">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <button class="btn waves-effect waves-light btn-secondary" data-toggle="modal" data-target="#modal<?=$value->id?>" >
                                                         <i class="fas fa-print"></i>
                                                     </button>
-                                                    <a href="<?=site_url('penetapan/edit/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <a href="<?=site_url('penahanan/edit/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-warning"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
                                                         <i class="fas fa-pencil-alt"></i>
                                                     </a>
-                                                    <a href="<?=site_url('penetapan/delete/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-danger"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
+                                                    <?php if ($this->session->userdata('role') == 1 ) { ?>
+                                                    <a href="<?=site_url('penahanan/delete/'.encode_url($value->id))?>" class="btn waves-effect waves-light btn-danger"  data-toggle="tooltip" data-placement="top" title="" data-original-title="Hapus">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
+                                                    <?php } ?>
                                                 </td>
-                                                <?php } ?>
                                             </tr>
                                             <?php } ?>
                                             
@@ -123,7 +123,7 @@
                                 <button type="button" class="close ml-auto" data-dismiss="modal"
                                     aria-hidden="true">×</button>
                             </div>
-                            <form action="<?=site_url('penetapan/cetak')?>" method="post">
+                            <form action="<?=site_url('penahanan/cetak')?>" method="post">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">

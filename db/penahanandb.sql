@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 22, 2021 at 07:57 AM
+-- Generation Time: Oct 24, 2021 at 01:30 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -57,10 +57,10 @@ INSERT INTO `instansi` (`id`, `nama`, `singkatan`, `tipe`, `alamat`, `is_active`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penetapan`
+-- Table structure for table `penahanan`
 --
 
-CREATE TABLE `penetapan` (
+CREATE TABLE `penahanan` (
   `id` int(11) NOT NULL,
   `nomorpenetapan` varchar(40) NOT NULL,
   `counter` int(11) NOT NULL DEFAULT 0,
@@ -80,11 +80,46 @@ CREATE TABLE `penetapan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `penetapan`
+-- Dumping data for table `penahanan`
 --
 
-INSERT INTO `penetapan` (`id`, `nomorpenetapan`, `counter`, `tglpermohonan`, `nomorpermohonan`, `jenisperkara`, `pasalperkara`, `tglpenahananhabis`, `instansipenahanterakhir`, `perpanjangan`, `pasalrujukan`, `idtersangka`, `idinstansi`, `is_active`, `created_at`, `updated_at`) VALUES
+INSERT INTO `penahanan` (`id`, `nomorpenetapan`, `counter`, `tglpermohonan`, `nomorpermohonan`, `jenisperkara`, `pasalperkara`, `tglpenahananhabis`, `instansipenahanterakhir`, `perpanjangan`, `pasalrujukan`, `idtersangka`, `idinstansi`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, '70/Pen.Pid/2021/PN Kpg', 70, '2021-10-21', 'B/2070/X/2021/Ditreskrimum', 'Persetubuhan Anak', 'Pasal 76D jo. Pasal 81 Ayat (3) UU RI No. 17 Tahun 2016 tentang Penetapan Peraturan Pemerintah Pengganti UU No. 1 Tahun 2016 tentang Perubahan Kedua Atas UU No. 23 Tahun 2002 tentang Perlindungan Anak', '2022-11-05', 1, 30, '2', 1, 3, 1, '2021-10-22 13:51:00', '2021-10-22 13:51:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penyitaan`
+--
+
+CREATE TABLE `penyitaan` (
+  `id` int(11) NOT NULL,
+  `jenispenyitaan` int(1) NOT NULL,
+  `nomorpenetapan` varchar(50) DEFAULT NULL,
+  `counter` int(11) NOT NULL,
+  `tglpermohonan` date NOT NULL,
+  `nomorpermohonan` varchar(100) NOT NULL,
+  `jenisperkara` text NOT NULL,
+  `pasalperkara` text NOT NULL,
+  `nomorlaporansita` varchar(100) NOT NULL,
+  `tgllaporansita` date NOT NULL,
+  `tglbasita` date NOT NULL,
+  `idinstansi` int(11) NOT NULL,
+  `idtersangka` int(11) NOT NULL,
+  `disitadari` varchar(100) NOT NULL,
+  `deskripsipenyitaan` text NOT NULL,
+  `qrcode` varchar(60) NOT NULL,
+  `is_active` int(1) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penyitaan`
+--
+
+INSERT INTO `penyitaan` (`id`, `jenispenyitaan`, `nomorpenetapan`, `counter`, `tglpermohonan`, `nomorpermohonan`, `jenisperkara`, `pasalperkara`, `nomorlaporansita`, `tgllaporansita`, `tglbasita`, `idinstansi`, `idtersangka`, `disitadari`, `deskripsipenyitaan`, `qrcode`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 2, '1/Pen.Pid/2021/PN Kpg', 1, '2021-10-01', 'B/1/X/2021/Sektor Oebobo', 'Penggelapan', 'Pasal 373', 'SP-Sita/180/2021/Ditreskrimum', '2020-10-30', '2020-10-30', 6, 1, 'Joan Jett', '1 kwitansi', 'qr-20211024163028.png', 1, '2021-10-24 16:30:00', '2021-10-24 16:30:00');
 
 -- --------------------------------------------------------
 
@@ -139,9 +174,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nama`, `role`, `username`, `password`, `is_active`, `created_at`, `updated_at`, `image`) VALUES
-(1, 'Super Admin', 1, 'asido', '6b375695551b0d28006ac41a34796f7d06152939', 1, '2021-10-13 05:05:00', '2021-10-13 05:05:00', 'user-20210807130817.jpg'),
+(1, 'ADMIN', 1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '2021-10-24 12:59:00', '2021-10-24 12:59:00', 'user-20211024125904.jpg'),
 (2, 'WARI JUNIATI, S.H., M.H.', 3, 'wari', 'fb83f70d1a5e6092ed65d71474f6e92e0e4e840b', 1, '2021-10-21 05:19:41', '2021-10-21 05:19:41', ''),
-(3, 'DJU JOHNSON MIRA MANGNGI, S.H., M.H.', 2, 'johnson', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '2021-10-21 10:33:05', '2021-10-21 10:33:05', '');
+(3, 'DJU JOHNSON MIRA MANGNGI, S.H., M.H.', 2, 'johnson', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '2021-10-21 10:33:05', '2021-10-21 10:33:05', ''),
+(5, 'ASIDO', 4, 'asido', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 1, '2021-10-24 12:40:00', '2021-10-24 12:40:00', 'user-20211024124040.jpg');
 
 --
 -- Indexes for dumped tables
@@ -154,9 +190,15 @@ ALTER TABLE `instansi`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `penetapan`
+-- Indexes for table `penahanan`
 --
-ALTER TABLE `penetapan`
+ALTER TABLE `penahanan`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penyitaan`
+--
+ALTER TABLE `penyitaan`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -182,9 +224,15 @@ ALTER TABLE `instansi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `penetapan`
+-- AUTO_INCREMENT for table `penahanan`
 --
-ALTER TABLE `penetapan`
+ALTER TABLE `penahanan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `penyitaan`
+--
+ALTER TABLE `penyitaan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -197,7 +245,7 @@ ALTER TABLE `tersangka`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -6,11 +6,11 @@ require_once BASEPATH.'core/CodeIgniter.php';
 
 use PhpOffice\PhpWord\PhpWord;
 
-class Penetapan extends CI_Controller {
+class Penahanan extends CI_Controller {
 
     public function __construct(){
 		parent::__construct();
-		$this->load->model('Penetapan_M', 'penetapan_model');
+		$this->load->model('Penahanan_M', 'penahanan_model');
         $this->load->model('Instansi_M', 'instansi_model');
         $this->load->model('Tersangka_M', 'tersangka_model');
         $this->load->model('User_M', 'user_model');
@@ -23,12 +23,12 @@ class Penetapan extends CI_Controller {
 	public function index(){
         isLogout();
         $data = array(
-            'active_menu' => 'penetapan',
-            'page_title' => 'penetapan',
-            'data' => $this->penetapan_model->get()->result(),
+            'active_menu' => 'penahanan',
+            'page_title' => 'penahanan',
+            'data' => $this->penahanan_model->get()->result(),
         );
 		$this->load->view('template', $data);
-        $this->load->view('penetapan/penetapan-list', $data);
+        $this->load->view('penahanan/penahanan-list', $data);
     }
 
     public function getInstansiDropdown(){
@@ -61,13 +61,13 @@ class Penetapan extends CI_Controller {
     public function add(){
         isLogout();
         $data = array(
-            'active_menu' => 'penetapan',
-            'page_title' => 'penetapan',
+            'active_menu' => 'penahanan',
+            'page_title' => 'penahanan',
             'data_instansi' => $this->getInstansiDropdown(),
             'data_tersangka' => $this->getTersangkaDropdown(),
         );
 		$this->load->view('template', $data);
-        $this->load->view('penetapan/penetapan-form-add', $data);
+        $this->load->view('penahanan/penahanan-form-add', $data);
     }
     
     public function edit($id){
@@ -75,30 +75,30 @@ class Penetapan extends CI_Controller {
         $id = decode_url($id);
 
         $data = array(
-            'active_menu' => 'penetapan',
-            'page_title' => 'penetapan',
-            'row' => $this->penetapan_model->get($id)->row(),
+            'active_menu' => 'penahanan',
+            'page_title' => 'penahanan',
+            'row' => $this->penahanan_model->get($id)->row(),
             'data_instansi' => $this->getInstansiDropdown(),
             'data_tersangka' => $this->getTersangkaDropdown(),
         );
 		$this->load->view('template', $data);
-        $this->load->view('penetapan/penetapan-form-edit', $data);
+        $this->load->view('penahanan/penahanan-form-edit', $data);
 	}
 
     public function detail($id){
         isLogout();
         $id = decode_url($id);
         
-        // echo json_encode($this->penetapan_model->get($id)->row());
+        // echo json_encode($this->penahanan_model->get($id)->row());
         // exit();
 
         $data = array(
-            'active_menu' => 'penetapan',
-            'page_title' => 'penetapan',
-            'data' => $this->penetapan_model->get($id)->row(),
+            'active_menu' => 'penahanan',
+            'page_title' => 'penahanan',
+            'data' => $this->penahanan_model->get($id)->row(),
         );
 		$this->load->view('template', $data);
-        $this->load->view('penetapan/penetapan-form-detail', $data);
+        $this->load->view('penahanan/penahanan-form-detail', $data);
 	}
 
     public function submit(){
@@ -123,23 +123,23 @@ class Penetapan extends CI_Controller {
 
             if ($this->form_validation->run() == FALSE){
 				$data = array(
-                    'active_menu' => 'penetapan',
-                    'page_title' => 'penetapan',
+                    'active_menu' => 'penahanan',
+                    'page_title' => 'penahanan',
                     'data_instansi' => $this->getInstansiDropdown(),
                     'data_tersangka' => $this->getTersangkaDropdown(),
                 );
                 $this->load->view('template', $data);
-                $this->load->view('penetapan/penetapan-form-add', $data);
+                $this->load->view('penahanan/penahanan-form-add', $data);
 			} else {
                 $currentYear = date('Y');
-                $queryCounter = $this->penetapan_model->getNomorPenetapanTerakhir($currentYear)->row()->nomorterakhir;
-                $noPenetapan =  ($queryCounter ?? 0) + 1;
+                $queryCounter = $this->penahanan_model->getNomorPenetapanTerakhir($currentYear)->row()->nomorterakhir;
+                $nopenetapan =  ($queryCounter ?? 0) + 1;
 
-                $noPenetapanBaru = $noPenetapan.'/Pen.Pid/2021/PN Kpg';
+                $nopenetapanBaru = $nopenetapan.'/Pen.Pid/2021/PN Kpg';
 
                 $postData = array(
-                    'counter' => $noPenetapan,
-                    'nomorpenetapan' => $noPenetapanBaru,
+                    'counter' => $nopenetapan,
+                    'nomorpenetapan' => $nopenetapanBaru,
                     'tglpermohonan' => $post['tglpermohonan'],
                     'idinstansi' => $post['idinstansi'],
                     'nomorpermohonan' => $post['nomorpermohonan'],
@@ -154,15 +154,15 @@ class Penetapan extends CI_Controller {
                     'updated_at' => date("Y-m-d H:i:S"),
                     'is_active' => 1
                 );
-                $this->penetapan_model->add($postData);
+                $this->penahanan_model->add($postData);
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
-                    redirect('penetapan');
+                    redirect('penahanan');
                 }
             }
         } else {
             $this->session->set_flashdata('notif_failed', 'Gagal Menyimpan Data. Tekan Tombol Submit!');
-            redirect('penetapan');
+            redirect('penahanan');
         }
        
     }
@@ -190,14 +190,14 @@ class Penetapan extends CI_Controller {
 
             if ($this->form_validation->run() == FALSE){
 				$data = array(
-                    'active_menu' => 'penetapan',
-                    'page_title' => 'penetapan',
-                    'row' => $this->penetapan_model->get($id)->row(),
+                    'active_menu' => 'penahanan',
+                    'page_title' => 'penahanan',
+                    'row' => $this->penahanan_model->get($id)->row(),
                     'data_instansi' => $this->getInstansiDropdown(),
                     'data_tersangka' => $this->getTersangkaDropdown(),
                 );
                 $this->load->view('template', $data);
-                $this->load->view('penetapan/penetapan-form-edit', $data);
+                $this->load->view('penahanan/penahanan-form-edit', $data);
 			} else {
                 $postData = array(
                     'tglpermohonan' => $post['tglpermohonan'],
@@ -213,15 +213,15 @@ class Penetapan extends CI_Controller {
                     'updated_at' => date("Y-m-d H:i:S"),
                     'is_active' => 1
                 );
-                $this->penetapan_model->update($postData, $id);
+                $this->penahanan_model->update($postData, $id);
                 if($this->db->affected_rows() > 0){
                     $this->session->set_flashdata('notif_success', 'Data berhasil disimpan');
-                    redirect('penetapan');
+                    redirect('penahanan');
                 }
             }
         } else {
             $this->session->set_flashdata('notif_failed', 'Gagal Menyimpan Data. Tekan Tombol Submit!');
-            redirect('penetapan');
+            redirect('penahanan');
         }
     }
 
@@ -232,11 +232,11 @@ class Penetapan extends CI_Controller {
             'is_active' => 0,
             'updated_at' => date("Y-m-d H:i:S")
         );
-        $this->penetapan_model->update($data, $id);
+        $this->penahanan_model->update($data, $id);
 
         if($this->db->affected_rows() > 0){
             $this->session->set_flashdata('notif_success', 'Data berhasil dihapus');
-            redirect('penetapan');
+            redirect('penahanan');
         }
     }
 
@@ -251,16 +251,16 @@ class Penetapan extends CI_Controller {
             $pejabatRole = 'Wakil Ketua';
         };
 
-        $dataPenetapan = $this->penetapan_model->get($post['id'])->row();
-        $dataTersangka = $this->tersangka_model->get($dataPenetapan->idtersangka)->row();
+        $datapenahanan = $this->penahanan_model->get($post['id'])->row();
+        $dataTersangka = $this->tersangka_model->get($datapenahanan->idtersangka)->row();
 
-        $tglMulaiPerpanjangan = date('Y-m-d', strtotime($dataPenetapan->tglpenahananhabis. ' + 1 days'));
-        $tglAkhirPerpanjangan = date('Y-m-d', strtotime($dataPenetapan->tglpenahananhabis. ' + 30 days'));
-        // var_dump($dataPenetapan->nomorpenetapan);
+        $tglMulaiPerpanjangan = date('Y-m-d', strtotime($datapenahanan->tglpenahananhabis. ' + 1 days'));
+        $tglAkhirPerpanjangan = date('Y-m-d', strtotime($datapenahanan->tglpenahananhabis. ' + 30 days'));
+        // var_dump($datapenahanan->nomorpenetapan);
         // exit();
 
         $fileName = strtr(
-            $dataPenetapan->nomorpenetapan,
+            $datapenahanan->nomorpenetapan,
             array(
                 '/' => '-',
                 '.' => '-'
@@ -297,7 +297,7 @@ class Penetapan extends CI_Controller {
 
 
             $section->addtext(
-                'Nomor: '.$dataPenetapan->nomorpenetapan,
+                'Nomor: '.$datapenahanan->nomorpenetapan,
                 array('bold' => true),
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -323,7 +323,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t" .'Telah membaca surat dari '. $dataPenetapan->namainstansi. ' Nomor '.$dataPenetapan->nomorpermohonan .' tanggal '.date_indo_text($dataPenetapan->tglpermohonan).' perihal perpanjangan waktu penahanan guna kepentingan pemeriksaan yang belum selesai terhadap Tersangka:'),
+            $section->addText(htmlspecialchars("\t" .'Telah membaca surat dari '. $datapenahanan->namainstansi. ' Nomor '.$datapenahanan->nomorpermohonan .' tanggal '.date_indo_text($datapenahanan->tglpermohonan).' perihal perpanjangan waktu penahanan guna kepentingan pemeriksaan yang belum selesai terhadap Tersangka:'),
                 null,
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -387,7 +387,7 @@ class Penetapan extends CI_Controller {
                 )
             );
             
-            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa Tersangka disangka melakukan tindak pidana “'.$dataPenetapan->jenisperkara.'”, sebagaimana dimaksud dalam '.$dataPenetapan->pasalperkara.'.'),
+            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa Tersangka disangka melakukan tindak pidana “'.$datapenahanan->jenisperkara.'”, sebagaimana dimaksud dalam '.$datapenahanan->pasalperkara.'.'),
                 array('color' => '000000', 'bold' => false),
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -395,7 +395,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa waktu penahanan Tersangka tersebut berdasarkan perintah penahanan yang dikeluarkan '.$dataPenetapan->instansipenahanterakhirtext.', akan berakhir pada tanggal '.date_indo_text($dataPenetapan->tglpenahananhabis)).'.',
+            $section->addText(htmlspecialchars("\t" .'Menimbang, bahwa waktu penahanan Tersangka tersebut berdasarkan perintah penahanan yang dikeluarkan '.$datapenahanan->instansipenahanterakhirtext.', akan berakhir pada tanggal '.date_indo_text($datapenahanan->tglpenahananhabis)).'.',
                 array('color' => '000000', 'bold' => false),
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -411,7 +411,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t" .'Mengingat '.$dataPenetapan->pasalrujukantext.'.'),
+            $section->addText(htmlspecialchars("\t" .'Mengingat '.$datapenahanan->pasalrujukantext.'.'),
               null,
               array(
                 'space' => array('before' => 0, 'after' => 60), 
@@ -429,7 +429,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t".'Mengabulkan permintaan dari '.$dataPenetapan->namainstansi.' untuk memperpanjang waktu penahanan Tersangka '. $dataPenetapan->namatersangka .' selama 30 (tiga puluh) hari terhitung sejak tanggal '.date_indo_text($tglMulaiPerpanjangan).' sampai dengan tanggal '.date_indo_text($tglAkhirPerpanjangan).'.'),
+            $section->addText(htmlspecialchars("\t".'Mengabulkan permintaan dari '.$datapenahanan->namainstansi.' untuk memperpanjang waktu penahanan Tersangka '. $datapenahanan->namatersangka .' selama 30 (tiga puluh) hari terhitung sejak tanggal '.date_indo_text($tglMulaiPerpanjangan).' sampai dengan tanggal '.date_indo_text($tglAkhirPerpanjangan).'.'),
                 null,
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -437,7 +437,7 @@ class Penetapan extends CI_Controller {
                 )
             );
 
-            $section->addText(htmlspecialchars("\t".'Memerintahkan agar kepada Tersangka dan keluarganya selekas mungkin diberikan sehelai turunan penetapan ini.'),
+            $section->addText(htmlspecialchars("\t".'Memerintahkan agar kepada Tersangka dan keluarganya selekas mungkin diberikan sehelai turunan penahanan ini.'),
                 null,
                 array(
                     'space' => array('before' => 0, 'after' => 60), 
@@ -484,7 +484,7 @@ class Penetapan extends CI_Controller {
 
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
             header('Content-Type: application/msword');
-        	header('Content-Disposition: attachment;filename="Penetapan-'. $fileName.'.docx"'); 
+        	header('Content-Disposition: attachment;filename="penahanan-'. $fileName.'.docx"'); 
 		    header('Cache-Control: max-age=0');
             $objWriter->save('php://output');
         } catch (Exception $e) {

@@ -11,7 +11,7 @@
                     <h3 class="text-themecolor mb-0">Profil User</h3>
                     <ol class="breadcrumb mb-0 p-0 bg-transparent">
                         <li class="breadcrumb-item"><a href="<?=base_url()?>">Home</a></li>
-                        <li class="breadcrumb-item active">Tambah User</li>
+                        <li class="breadcrumb-item active">Edit User</li>
                     </ol>
                 </div>
             </div>
@@ -22,18 +22,18 @@
             <div class="container-fluid">
                 <div class="col-md-12 col-lg-11">
                     <div class="card card-body">
-                        <h3 class="mb-0">Tambah User</h3>
-                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk menambah user:</p>
+                        <h3 class="mb-0">Edit User</h3>
+                        <p class="text-muted mb-4 font-13"> Lengkapi form berikut untuk mengubah user:</p>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
-                                <form action="<?=site_url('users/submit')?>" enctype="multipart/form-data" method="post">
+                                <form action="<?=site_url('users/update')?>" enctype="multipart/form-data" method="post">
                                     <div class="row">
-                                        <input type="hidden" name="id">
+                                        <input type="hidden" name="id" value="<?=encode_url(($this->input->post('id') ?? $row->id))?>">
                                         
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
                                                 <label for="nama">Nama</label>
-                                                <input type="text" name="nama" class="form-control" id="nama" value="<?=$this->input->post('nama')?>">
+                                                <input type="text" name="nama" class="form-control" id="nama" value="<?=$this->input->post('nama') ?? $row->nama?>">
                                                 <div class="text-danger">
                                                     <small><?php echo form_error('nama'); ?></small>
                                                 </div>
@@ -43,11 +43,12 @@
                                             <div class="form-group">
                                                 <label for="role">Role</label>
                                                 <select class="select2 form-control custom-select <?=form_error('role') ? 'is-invalid' : null ?>" name="role" style="width: 100%; height:36px;" required>
+                                                    <?php $selectedRole = ($this->input->post('role') ?? $row->role) ?>
                                                     <option value="">Pilih Role</option>
-                                                    <option value="1" <?php echo set_select('role', 1)?>> Admin</option>
-                                                    <option value="2" <?php echo set_select('role', 2)?>> Ketua Pengadilan</option>
-                                                    <option value="3" <?php echo set_select('role', 3)?>> Wakil Ketua Pengadilan</option>
-                                                    <option value="4" <?php echo set_select('role', 4)?>> Staff</option>
+                                                    <option value="1" <?=($selectedRole == 1 ? 'selected' : null) ?>> Admin</option>
+                                                    <option value="2" <?=($selectedRole == 2 ? 'selected' : null) ?>> Ketua Pengadilan</option>
+                                                    <option value="3" <?=($selectedRole == 3 ? 'selected' : null) ?>> Wakil Ketua Pengadilan</option>
+                                                    <option value="4" <?=($selectedRole == 4 ? 'selected' : null) ?>> Staff</option>
                                                 </select>
                                                 <div class="text-danger">
                                                     <small><?php echo form_error('role'); ?></small>
@@ -60,7 +61,7 @@
                                         <div class="col-md-6 mb-3 mb-md-0">
                                             <div class="form-group">
                                                 <label for="username">username</label>
-                                                <input type="text" name="username" class="form-control" id="username" value="<?=$this->input->post('username')?>">
+                                                <input type="text" name="username" class="form-control" id="username" value="<?=$this->input->post('username') ?? $row->username?>">
                                                 <div class="text-danger">
                                                     <small><?php echo form_error('username'); ?></small>
                                                 </div>
